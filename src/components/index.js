@@ -1,4 +1,6 @@
-import SubjectCard from "./SubjectCard"
+import CourseCard from "./CourseCard";
+import NotificationButton from "./NotificationButton";
 export {
-    SubjectCard
+    CourseCard,
+    NotificationButton
 }

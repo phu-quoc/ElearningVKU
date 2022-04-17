@@ -5,14 +5,12 @@
  * @format
  * @flow strict-local
  */
-
+import 'react-native-gesture-handler';
 import React from 'react';
-import AppNavigation from './src/navigation/AppNavigation';
+import AppNavigator from './src/navigation/AppNavigator';
 
 function App() {
-  return (
-      <AppNavigation />
-  );
+  return <AppNavigator />;
 }
 
 export default App;

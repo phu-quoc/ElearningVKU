@@ -1,9 +1,10 @@
 import React from 'react';
 import {FlatList, StyleSheet, Text, View} from 'react-native';
-import {SubjectCard} from '../components';
+import {CourseCard} from '../components';
+import {COURSE_DETAILS_SCREEN_NAME} from '../constants/routeNames';
 
-function HomeScreen() {
-  function renderSubjects() {
+function HomeScreen({navigation}) {
+  function renderCourses() {
     return (
       <FlatList
         data={[
@@ -17,11 +18,16 @@ function HomeScreen() {
           {key: '8', name: 'Mang may tinh'},
         ]}
         showsVerticalScrollIndicator={false}
-        renderItem={({item, index}) => <SubjectCard subject={item} />}
+        renderItem={({item, index}) => (
+          <CourseCard
+            course={item}
+            onPress={() => navigation.navigate(COURSE_DETAILS_SCREEN_NAME)}
+          />
+        )}
       />
     );
   }
-  return <View style={styles.container}>{renderSubjects()}</View>;
+  return <View style={styles.container}>{renderCourses()}</View>;
 }
 
 const styles = StyleSheet.create({

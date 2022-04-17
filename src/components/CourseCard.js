@@ -2,13 +2,16 @@ import React from 'react';
 import { Image, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import { Dimensions } from 'react-native';
 import icon from "../assets/icons/icon.png";
+import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
 
-const SubjectCard = ({subject}) => {
+const CourseCard = ({course, onPress}) => {
     return (
         <TouchableOpacity
-            style={styles.button}>
-                <Image source={icon} style={styles.image}/>
-                <Text>{`${subject.key}. ${subject.name}`}</Text> 
+            style={styles.button}
+            onPress={onPress}
+            >
+                <FontAwesome5Icon name='angle-double-right' size={30} />
+                <Text>{`${course.key}. ${course.name}`}</Text> 
         </TouchableOpacity>
     )
 }
@@ -29,4 +32,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default SubjectCard;
+export default CourseCard;
