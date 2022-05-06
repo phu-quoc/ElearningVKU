@@ -1,18 +1,23 @@
 import axios from "axios";
-import { BASE_URL } from "./Common";
+import { BASE_URL, setUserSession } from "./Common";
 
-export const login = async (user, setError) => {
-  await axios({
-      method: 'post',
-      url: `${BASE_URL}login`,
-      headers: {'Content-Type': 'application/json'},
-      data: {
-   
-      }
-  }).then(response => {
-      setTokenSession(response.data.token)
-      setUserSession(response.data.user)
-  }).catch(error => {
-      setError(error.response.data.message)
-  })
+export const loginHandler = async (idToken) => {
+    await axios({
+        method: 'post',
+        url: `${BASE_URL}login`,
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        },
+        data: {
+            'idToken': idToken,
+        }
+    }).then(response => {
+        console.log("ok")
+        console.log(response);
+    }).catch(error => {
+        console.log("fail")
+        console.error(error.code);
+        console.error(error.message);
+    })
 }

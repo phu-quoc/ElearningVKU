@@ -1,0 +1,34 @@
+{
+  "additionalUserInfo": {
+    "isNewUser": true,
+    "profile": {
+      "aud": "1025591701711-p3njvopj68jsdnp8np4u46dte3g0o9ch.apps.googleusercontent.com",
+      "azp": "1025591701711-jgn0cik25f3u1396v7gn34hfk0c359i5.apps.googleusercontent.com",
+      "email": "ptphuc1611@gmail.com",
+      "email_verified": true,
+      "exp": 1651809133,
+      "family_name": "Phạm",
+      "given_name": "Toàn Phúc",
+      "iat": 1651805533,
+      "iss": "https://accounts.google.com",
+      "locale": "vi",
+      "name": "Toàn Phúc Phạm",
+      "picture": "https://lh3.googleusercontent.com/a/AATXAJwQ5IH150mha4oO8bV1OnJglk2Xx1DkaPZOu_aU=s96-c",
+      "sub": "116704059645414474426"
+    },
+    "providerId": "google.com"
+  },
+  "user": {
+    "displayName": "Toàn Phúc Phạm",
+    "email": "ptphuc1611@gmail.com",
+    "emailVerified": true,
+    "isAnonymous": false,
+    "metadata": [Object],
+    "phoneNumber": null,
+    "photoURL": "https://lh3.googleusercontent.com/a/AATXAJwQ5IH150mha4oO8bV1OnJglk2Xx1DkaPZOu_aU=s96-c",
+    "providerData": [Array],
+    "providerId": "firebase",
+    "tenantId": null,
+    "uid": "1YXfgnuI3sZzv65ldJgcCreqE5n2"
+  }
+}
