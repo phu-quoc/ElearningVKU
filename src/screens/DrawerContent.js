@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text } from 'react-native';
 import { styles } from '../assets/StyleSheet/DrawerNavigationStyleSheet';
-import { GoogleSignin,GoogleSigninButton} from '@react-native-google-signin/google-signin';
+import { GoogleSignin, GoogleSigninButton } from '@react-native-google-signin/google-signin';
 import {
     Avatar,
     Title,
@@ -26,7 +26,10 @@ import { loginHandler } from '../api/LoginAPI';
 
 export default function DrawerContent(props) {
     const [isLoggined, setIsLoggined] = useState(false);
-    const [user, setUser] = useState(null);
+    const [user, setUser] = useState({name: "", email:""} );
+    // const {setUser}=()=>{ 
+
+    // }
     useEffect(() => {
         GoogleSignin.configure({
             webClientId: '1025591701711-p3njvopj68jsdnp8np4u46dte3g0o9ch.apps.googleusercontent.com',
@@ -40,19 +43,23 @@ export default function DrawerContent(props) {
             // Create a Google credential with the token
             const googleCredential = auth.GoogleAuthProvider.credential(idToken);
             // Sign-in the user with the credential
-            const user = auth().signInWithCredential(googleCredential);
-            user.then((data) => {
+            const userAuth = auth().signInWithCredential(googleCredential);
+            userAuth.then((data) => {
                 console.log(data);
+                setUser({
+                    name: data.additionalUserInfo.profile.name,
+                    email: data.additionalUserInfo.profile.email,
+                })
                 console.log(idToken);
-                loginHandler(idToken);
+                loginHandler(idToken,user, setUser);
+                setIsLoggined(true);
             })
-            .catch((error) => {
-                console.log(error.message);
-            })
+                .catch((error) => {
+                    console.log(error.message);
+                })
         } catch (error) {
             console.log(error.message)
         }
-        setIsLoggined(true);
     }
     const logout = async () => {
         try {
@@ -83,12 +90,13 @@ export default function DrawerContent(props) {
                         <View style={styles.userInfoSection}>
                             <View style={{ flexDirection: 'row', marginTop: 15 }}>
                                 <Avatar.Image
-                                    source={require('../assets/icons/profile.png')}
+                                    source={user?.data?.avatar?{ uri:user.data.avatar }:require('../assets/icons/profile.png')}
+                                    // source={{ uri:"https://lh3.googleusercontent.com/a/AATXAJwQ5IH150mha4oO8bV1OnJglk2Xx1DkaPZOu_aU=s96-c" }}
                                     size={50}
                                 />
                                 <View style={{ marginLeft: 15, flexDirection: 'column' }}>
-                                    <Title style={styles.title}>UserName</Title>
-                                    <Caption style={styles.caption}>user@vku.udn.vn</Caption>
+                                    <Title style={styles.title}>{user.name}</Title>
+                                    <Caption style={styles.caption}>{user.email}</Caption>
                                 </View>
                             </View>
 
