@@ -2,10 +2,15 @@ import {
     createDrawerNavigator,
 } from '@react-navigation/drawer';
 import React from 'react';
-import { BOTTOM_TABS_NAVIGATOR_NAME, COURSE_DETAILS_SCREEN_NAME } from '../constants/routeNames';
+import {
+    BOTTOM_TABS_NAVIGATOR_NAME,
+    COURSE_DETAILS_SCREEN_NAME,
+    PROFILE_SCREEN_NAME,
+} from '../constants/routeNames';
 import CourseDetailsScreen from '../screens/CourseDetailsScreen';
 import BottomTabsNavigator from './BottomTabsNavigator';
-import DrawerContent from '../screens/DrawerContent'
+import DrawerContent from '../screens/DrawerContent';
+import ProfileScreen from '../screens/ProfileScreen';
 const Drawer = createDrawerNavigator();
 
 function DrawerNavigator() {
@@ -17,6 +22,7 @@ function DrawerNavigator() {
         >
             <Drawer.Screen name={BOTTOM_TABS_NAVIGATOR_NAME} component={BottomTabsNavigator} options={{ headerShown: false }} />
             <Drawer.Screen name={COURSE_DETAILS_SCREEN_NAME} component={CourseDetailsScreen} options={{ headerLeft: false }} />
+            <Drawer.Screen name={PROFILE_SCREEN_NAME} component={ProfileScreen} options={{ headerShown: false }} />
         </Drawer.Navigator>
     );
 }

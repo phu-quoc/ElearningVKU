@@ -9,3 +9,4 @@ export const BOTTOM_TABS_NAVIGATOR_NAME = 'BottomTabsNavigator';
 export const DRAWER_NAVIGATOR_NAME = 'DrawerNavigator';
 export const NOTIFICATIONS_NATIVE_STACK_NAME =
   'NotificationsNativeStackNavigator';
+export const PROFILE_SCREEN_NAME = 'Profile'

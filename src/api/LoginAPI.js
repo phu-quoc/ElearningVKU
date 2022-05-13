@@ -11,8 +11,9 @@ export const loginHandler = async (idToken,user, setUser) => {
     }).then(response => {
         let data = response.data;
         console.log(response.data);
-        setUser({...user,data})
-        console.log(user);
+        console.log("raw user:",user);
+        setUser({...user,data, name: data.first_name + data.last_name, email:data.email})
+        console.log("Login APi: ",user);
     }).catch(error => {
         console.log("fail")
         console.error(error.code);

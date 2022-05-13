@@ -19,7 +19,8 @@ import {
     SETTINGS_SCREEN_NAME,
     COURSE_DETAILS_SCREEN_NAME,
     HOME_SCREEN_NAME,
-    NOTIFICATIONS_SCREEN_NAME
+    NOTIFICATIONS_SCREEN_NAME,
+    PROFILE_SCREEN_NAME
 } from '../constants/routeNames';
 import auth from '@react-native-firebase/auth';
 import { loginHandler } from '../api/LoginAPI';
@@ -45,13 +46,14 @@ export default function DrawerContent(props) {
             // Sign-in the user with the credential
             const userAuth = auth().signInWithCredential(googleCredential);
             userAuth.then((data) => {
-                console.log(data);
+                console.log("Google response:",data);
                 setUser({
                     name: data.additionalUserInfo.profile.name,
                     email: data.additionalUserInfo.profile.email,
                 })
                 console.log(idToken);
                 loginHandler(idToken,user, setUser);
+                console.log("Drawer content:",user);
                 setIsLoggined(true);
             })
                 .catch((error) => {
@@ -91,7 +93,6 @@ export default function DrawerContent(props) {
                             <View style={{ flexDirection: 'row', marginTop: 15 }}>
                                 <Avatar.Image
                                     source={user?.data?.avatar?{ uri:user.data.avatar }:require('../assets/icons/profile.png')}
-                                    // source={{ uri:"https://lh3.googleusercontent.com/a/AATXAJwQ5IH150mha4oO8bV1OnJglk2Xx1DkaPZOu_aU=s96-c" }}
                                     size={50}
                                 />
                                 <View style={{ marginLeft: 15, flexDirection: 'column' }}>
@@ -153,7 +154,7 @@ export default function DrawerContent(props) {
                                 />
                             )}
                             label="Profile"
-                            onPress={() => { props.navigation.navigate('Profile') }}
+                            onPress={() => { props.navigation.navigate(PROFILE_SCREEN_NAME) }}
                         />
                         <DrawerItem
                             icon={({ color, size }) => (
