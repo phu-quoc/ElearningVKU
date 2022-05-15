@@ -2,11 +2,14 @@ import axios from "axios";
 import { BASE_URL, setUserSession } from "./Common";
 
 export const loginHandler = async (idToken,user, setUser) => {
-    await axios.post(`${BASE_URL}login?idToken=${idToken}`,{
+    await axios.post(`${BASE_URL}login`,{
         // method: 'post',
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
+            'enctype': 'multipart/form-data',
+        },data:{
+            idToken: idToken,
         }
     }).then(response => {
         let data = response.data;
