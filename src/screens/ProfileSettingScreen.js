@@ -7,16 +7,19 @@ import {
 } from 'react-native';
 import React, { useState } from 'react'
 import ProfileSettingItem from '../components/ProfileSettingItem';
+import { getUser } from '../api/Common';
 
 function ProfileSettingScreen() {
   const departments = ['Computer Science', 'Business Administration', "Computer Engineering"]
   const majors = ["GIT", 'IT', ' DM', "CE"]
   const classes = ['20GIT', '20SE1', '20SE2', '20SE3']
+  const userTypes= ['Student', "Lecture"];
   const [text, setText] = useState("")
 
   return (
-    <View style={{ paddingTop: 30 }}>
+    <View style={{ paddingTop: 30, alignItems: 'center', }}>
       <ProfileSettingItem title="Department" data={departments} />
+      <ProfileSettingItem title="User Type" data={userTypes} />
       <ProfileSettingItem title="Major" data={majors} />
       <ProfileSettingItem title="Class" data={classes} />
       <View style={styles.profileItem}>
@@ -55,7 +58,7 @@ const styles = StyleSheet.create({
     lineHeight: 40,
     fontSize: 16,
     minWidth: 100,
-    textAlign: 'right',
+    // textAlign: 'right',
   },
   input: {
     width: 200,

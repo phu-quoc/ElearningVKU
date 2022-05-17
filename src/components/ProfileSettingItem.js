@@ -6,6 +6,7 @@ import {
   TextInput
 } from 'react-native';
 import SelectDropdown from 'react-native-select-dropdown'
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function ProfileSettingItem(props) {
   const [text, setText] = useState("")
@@ -33,14 +34,14 @@ const styles = StyleSheet.create({
     fontSize: 16,
     flexDirection: 'row',
     color: 'black',
-    marginLeft: 15,
+    // marginLeft: 15,
     paddingBottom: 10,
   },
   text: {
     lineHeight: 40,
     fontSize: 16,
     minWidth: 100,
-    textAlign: 'right',
+    // textAlign: 'right',
   },
   input: {
     width: 200,

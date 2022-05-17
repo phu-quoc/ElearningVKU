@@ -1,156 +1,23 @@
-// data google api login
-
 {
-  "additionalUserInfo": {
-    "isNewUser": true,
-    "profile": {
-      "aud": "1025591701711-p3njvopj68jsdnp8np4u46dte3g0o9ch.apps.googleusercontent.com",
-      "azp": "1025591701711-jgn0cik25f3u1396v7gn34hfk0c359i5.apps.googleusercontent.com",
+  "_U": 0,
+  "_V": 1,
+  "_W": {
+    "data": {
+      "created_at": "2022-05-07T00:46:47.000000Z",
+      "department_id": null,
       "email": "ptphuc1611@gmail.com",
-      "email_verified": true,
-      "exp": 1651809133,
-      "family_name": "Phạm",
-      "given_name": "Toàn Phúc",
-      "iat": 1651805533,
-      "iss": "https://accounts.google.com",
-      "locale": "vi",
-      "name": "Toàn Phúc Phạm",
-      "picture": "https://lh3.googleusercontent.com/a/AATXAJwQ5IH150mha4oO8bV1OnJglk2Xx1DkaPZOu_aU=s96-c",
-      "sub": "116704059645414474426"
+      "email_verified_at": null,
+      "first_name": "Phạm",
+      "google_id": "eyJhbGciOiJSUzI1NiIsImtpZCI6ImZjYmQ3ZjQ4MWE4MjVkMTEzZTBkMDNkZDk0ZTYwYjY5ZmYxNjY1YTIiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJhenAiOiIxMDI1NTkxNzAxNzExLWpnbjBjaWsyNWYzdTEzOTZ2N2duMzRoZmswYzM1OWk1LmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwiYXVkIjoiMTAyNTU5MTcwMTcxMS1wM25qdm9wajY4anNkbnA4bnA0dTQ2ZHRlM2cwbzljaC5hcHBzLmdvb2dsZXVzZXJjb250ZW50LmNvbSIsInN1YiI6IjExNjcwNDA1OTY0NTQxNDQ3NDQyNiIsImVtYWlsIjoicHRwaHVjMTYxMUBnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwibmFtZSI6IlRvw6BuIFBow7pjIFBo4bqhbSIsInBpY3R1cmUiOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS9BQVRYQUp3UTVJSDE1MG1oYTRvTzhiVjFPbkpnbGsyWHgxRGthUFpPdV9hVT1zOTYtYyIsImdpdmVuX25hbWUiOiJUb8OgbiBQaMO6YyIsImZhbWlseV9uYW1lIjoiUGjhuqFtIiwibG9jYWxlIjoidmkiLCJpYXQiOjE2NTE4ODMyODAsImV4cCI6MTY1MTg4Njg4MH0.ITccdsSmF5HwPVnavfoXM8iVVQ8i__CXXSUSdLtnrghdjBGoJOZGKu9BeWdAfMLho1la2IwX8H6Zw2uVuu8rhQ1-qNdfDAHdDgoR3brc_6l4fgGcxJqruNkYWTZBVWWsMggDpSQ1uj8NQoe1TbKbWWJcoh7k89wk0NX_zfYBTS6be1dTk8Gs9Zpq8XB7SzBOrIDuYGA3tbNPK36ujHeR8iIUKJi45DrTd3PfYfmd90Ji5F4UBuvgnIVaQmUPlc42-T2ma0O9KtKUvU6Y1onxESRpfVz5k4mhwoHl9oplbpXykeCrd_TXoMgnp9R875rq55dw39DMAb2FAY85jvbPhQ",
+      "id": 5,
+      "image_feature_path": "https://lh3.googleusercontent.com/a/AATXAJwQ5IH150mha4oO8bV1OnJglk2Xx1DkaPZOu_aU=s96-c",
+      "last_name": "Toàn Phúc",
+      "phone": null,
+      "updated_at": "2022-05-07T00:46:47.000000Z",
+      "user_type": 1
     },
-    "providerId": "google.com"
-  },
-  "user": {
-    "displayName": "Toàn Phúc Phạm",
     "email": "ptphuc1611@gmail.com",
-    "emailVerified": true,
-    "isAnonymous": false,
-    "metadata": [Object
-    ],
-    "phoneNumber": null,
-    "photoURL": "https://lh3.googleusercontent.com/a/AATXAJwQ5IH150mha4oO8bV1OnJglk2Xx1DkaPZOu_aU=s96-c",
-    "providerData": [Array
-    ],
-    "providerId": "firebase",
-    "tenantId": null,
-    "uid": "1YXfgnuI3sZzv65ldJgcCreqE5n2"
-  }
-}
-// data response from laravel login api
-{
-  "config": {
-    "adapter": [Function xhrAdapter
-    ],
-    "data": "{\"headers\":{\"Accept\":\"application/json\",\"Content-Type\":\"application/json\"}}",
-    "env": {
-      "FormData": null
-    },
-    "headers": {
-      "Accept": "application/json, text/plain, */*",
-      "Content-Type": "application/json"
-    },
-    "maxBodyLength": -1,
-    "maxContentLength": -1,
-    "method": "post",
-    "timeout": 0,
-    "transformRequest": [
-      [Function transformRequest
-      ]
-    ],
-    "transformResponse": [
-      [Function transformResponse
-      ]
-    ],
-    "transitional": {
-      "clarifyTimeoutError": false,
-      "forcedJSONParsing": true,
-      "silentJSONParsing": true
-    },
-    "url": "https://72ba-2402-9d80-40e-b4cd-bcf7-d803-bebb-c808.ap.ngrok.io/api/login?idToken=eyJhbGciOiJSUzI1NiIsImtpZCI6ImIxYTgyNTllYjA3NjYwZWYyMzc4MWM4NWI3ODQ5YmZhMGExYzgwNmMiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJhenAiOiIxMDI1NTkxNzAxNzExLWpnbjBjaWsyNWYzdTEzOTZ2N2duMzRoZmswYzM1OWk1LmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwiYXVkIjoiMTAyNTU5MTcwMTcxMS1wM25qdm9wajY4anNkbnA4bnA0dTQ2ZHRlM2cwbzljaC5hcHBzLmdvb2dsZXVzZXJjb250ZW50LmNvbSIsInN1YiI6IjExNjcwNDA1OTY0NTQxNDQ3NDQyNiIsImVtYWlsIjoicHRwaHVjMTYxMUBnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwibmFtZSI6IlRvw6BuIFBow7pjIFBo4bqhbSIsInBpY3R1cmUiOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS9BQVRYQUp3UTVJSDE1MG1oYTRvTzhiVjFPbkpnbGsyWHgxRGthUFpPdV9hVT1zOTYtYyIsImdpdmVuX25hbWUiOiJUb8OgbiBQaMO6YyIsImZhbWlseV9uYW1lIjoiUGjhuqFtIiwibG9jYWxlIjoidmkiLCJpYXQiOjE2NTI0MjM0OTIsImV4cCI6MTY1MjQyNzA5Mn0.MSEcAEcUGDaXGaXUeswPhsY9ALijAfIxHAT_nJeh_LPM7Ot7Ktku8i487t24us_1uTlsh_L4jZxWVaW3klfBaOLso_5AU6EazkU6RvVuTH6WuF6plEYoCruQ2EXz55QlVe8CRjqV3BDqVyyYD8nNuiqLvIRsJi804eMCcb0kfO03YVO3HRuGUf_x1K-yY9bxksTUwwnEdn3acS5OII162bgnZ4aHcJb4CDu6W1kV7IcyIHBVNsSZ8qnreLBHWYv6l2rz1RkFFUYR4IXaR0Cx0XUoT-KT-8yEAqPey5R7mXyYcegljoAyvGQDuqd43kjlPbkuHG6YFIPVK4XYBCxk7A",
-    "validateStatus": [Function validateStatus
-    ],
-    "xsrfCookieName": "XSRF-TOKEN",
-    "xsrfHeaderName": "X-XSRF-TOKEN"
+    "name": "PhạmToàn Phúc"
   },
-  "data": {
-    "avatar": "https://lh3.googleusercontent.com/a/AATXAJwQ5IH150mha4oO8bV1OnJglk2Xx1DkaPZOu_aU=s96-c",
-    "email": "ptphuc1611@gmail.com",
-    "first_name": "Phạm",
-    "id": 5,
-    "last_name": "Toàn Phúc"
-  },
-  "headers": {
-    "access-control-allow-origin": "*",
-    "cache-control": "no-cache, private",
-    "content-type": "application/json",
-    "date": "Fri, 13 May 2022 06:31:35 GMT, Fri, 13 May 2022 06:31:35 GMT",
-    "ngrok-trace-id": "b4f8c5c687d9b3ec97561c0822ac6015",
-    "x-powered-by": "PHP/8.0.2",
-    "x-ratelimit-limit": "60",
-    "x-ratelimit-remaining": "59"
-  },
-  "request": {
-    "DONE": 4,
-    "HEADERS_RECEIVED": 2,
-    "LOADING": 3,
-    "OPENED": 1,
-    "UNSENT": 0,
-    "_aborted": false,
-    "_cachedResponse": undefined,
-    "_hasError": false,
-    "_headers": {
-      "accept": "application/json, text/plain, */*",
-      "content-type": "application/json"
-    },
-    "_incrementalEvents": false,
-    "_lowerCaseResponseHeaders": {
-      "access-control-allow-origin": "*",
-      "cache-control": "no-cache, private",
-      "content-type": "application/json",
-      "date": "Fri, 13 May 2022 06:31:35 GMT, Fri, 13 May 2022 06:31:35 GMT",
-      "ngrok-trace-id": "b4f8c5c687d9b3ec97561c0822ac6015",
-      "x-powered-by": "PHP/8.0.2",
-      "x-ratelimit-limit": "60",
-      "x-ratelimit-remaining": "59"
-    },
-    "_method": "POST",
-    "_perfKey": "network_XMLHttpRequest_https://72ba-2402-9d80-40e-b4cd-bcf7-d803-bebb-c808.ap.ngrok.io/api/login?idToken=eyJhbGciOiJSUzI1NiIsImtpZCI6ImIxYTgyNTllYjA3NjYwZWYyMzc4MWM4NWI3ODQ5YmZhMGExYzgwNmMiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJhenAiOiIxMDI1NTkxNzAxNzExLWpnbjBjaWsyNWYzdTEzOTZ2N2duMzRoZmswYzM1OWk1LmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwiYXVkIjoiMTAyNTU5MTcwMTcxMS1wM25qdm9wajY4anNkbnA4bnA0dTQ2ZHRlM2cwbzljaC5hcHBzLmdvb2dsZXVzZXJjb250ZW50LmNvbSIsInN1YiI6IjExNjcwNDA1OTY0NTQxNDQ3NDQyNiIsImVtYWlsIjoicHRwaHVjMTYxMUBnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwibmFtZSI6IlRvw6BuIFBow7pjIFBo4bqhbSIsInBpY3R1cmUiOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS9BQVRYQUp3UTVJSDE1MG1oYTRvTzhiVjFPbkpnbGsyWHgxRGthUFpPdV9hVT1zOTYtYyIsImdpdmVuX25hbWUiOiJUb8OgbiBQaMO6YyIsImZhbWlseV9uYW1lIjoiUGjhuqFtIiwibG9jYWxlIjoidmkiLCJpYXQiOjE2NTI0MjM0OTIsImV4cCI6MTY1MjQyNzA5Mn0.MSEcAEcUGDaXGaXUeswPhsY9ALijAfIxHAT_nJeh_LPM7Ot7Ktku8i487t24us_1uTlsh_L4jZxWVaW3klfBaOLso_5AU6EazkU6RvVuTH6WuF6plEYoCruQ2EXz55QlVe8CRjqV3BDqVyyYD8nNuiqLvIRsJi804eMCcb0kfO03YVO3HRuGUf_x1K-yY9bxksTUwwnEdn3acS5OII162bgnZ4aHcJb4CDu6W1kV7IcyIHBVNsSZ8qnreLBHWYv6l2rz1RkFFUYR4IXaR0Cx0XUoT-KT-8yEAqPey5R7mXyYcegljoAyvGQDuqd43kjlPbkuHG6YFIPVK4XYBCxk7A",
-    "_performanceLogger": {
-      "_closed": false,
-      "_extras": [Object
-      ],
-      "_pointExtras": [Object
-      ],
-      "_points": [Object
-      ],
-      "_timespans": [Object
-      ]
-    },
-    "_requestId": null,
-    "_response": "{\"id\":5,\"email\":\"ptphuc1611@gmail.com\",\"first_name\":\"Ph\\u1ea1m\",\"last_name\":\"To\\u00e0n Ph\\u00fac\",\"avatar\":\"https:\\/\\/lh3.googleusercontent.com\\/a\\/AATXAJwQ5IH150mha4oO8bV1OnJglk2Xx1DkaPZOu_aU=s96-c\"}",
-    "_responseType": "",
-    "_sent": true,
-    "_subscriptions": [],
-    "_timedOut": false,
-    "_trackingName": "unknown",
-    "_url": "https://72ba-2402-9d80-40e-b4cd-bcf7-d803-bebb-c808.ap.ngrok.io/api/login?idToken=eyJhbGciOiJSUzI1NiIsImtpZCI6ImIxYTgyNTllYjA3NjYwZWYyMzc4MWM4NWI3ODQ5YmZhMGExYzgwNmMiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJhenAiOiIxMDI1NTkxNzAxNzExLWpnbjBjaWsyNWYzdTEzOTZ2N2duMzRoZmswYzM1OWk1LmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwiYXVkIjoiMTAyNTU5MTcwMTcxMS1wM25qdm9wajY4anNkbnA4bnA0dTQ2ZHRlM2cwbzljaC5hcHBzLmdvb2dsZXVzZXJjb250ZW50LmNvbSIsInN1YiI6IjExNjcwNDA1OTY0NTQxNDQ3NDQyNiIsImVtYWlsIjoicHRwaHVjMTYxMUBnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwibmFtZSI6IlRvw6BuIFBow7pjIFBo4bqhbSIsInBpY3R1cmUiOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS9BQVRYQUp3UTVJSDE1MG1oYTRvTzhiVjFPbkpnbGsyWHgxRGthUFpPdV9hVT1zOTYtYyIsImdpdmVuX25hbWUiOiJUb8OgbiBQaMO6YyIsImZhbWlseV9uYW1lIjoiUGjhuqFtIiwibG9jYWxlIjoidmkiLCJpYXQiOjE2NTI0MjM0OTIsImV4cCI6MTY1MjQyNzA5Mn0.MSEcAEcUGDaXGaXUeswPhsY9ALijAfIxHAT_nJeh_LPM7Ot7Ktku8i487t24us_1uTlsh_L4jZxWVaW3klfBaOLso_5AU6EazkU6RvVuTH6WuF6plEYoCruQ2EXz55QlVe8CRjqV3BDqVyyYD8nNuiqLvIRsJi804eMCcb0kfO03YVO3HRuGUf_x1K-yY9bxksTUwwnEdn3acS5OII162bgnZ4aHcJb4CDu6W1kV7IcyIHBVNsSZ8qnreLBHWYv6l2rz1RkFFUYR4IXaR0Cx0XUoT-KT-8yEAqPey5R7mXyYcegljoAyvGQDuqd43kjlPbkuHG6YFIPVK4XYBCxk7A",
-    "readyState": 4,
-    "responseHeaders": {
-      "access-control-allow-origin": "*",
-      "cache-control": "no-cache, private",
-      "content-type": "application/json",
-      "date": "Fri, 13 May 2022 06:31:35 GMT, Fri, 13 May 2022 06:31:35 GMT",
-      "ngrok-trace-id": "b4f8c5c687d9b3ec97561c0822ac6015",
-      "x-powered-by": "PHP/8.0.2",
-      "x-ratelimit-limit": "60",
-      "x-ratelimit-remaining": "59"
-    },
-    "responseURL": "https://72ba-2402-9d80-40e-b4cd-bcf7-d803-bebb-c808.ap.ngrok.io/api/login?idToken=eyJhbGciOiJSUzI1NiIsImtpZCI6ImIxYTgyNTllYjA3NjYwZWYyMzc4MWM4NWI3ODQ5YmZhMGExYzgwNmMiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJhenAiOiIxMDI1NTkxNzAxNzExLWpnbjBjaWsyNWYzdTEzOTZ2N2duMzRoZmswYzM1OWk1LmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwiYXVkIjoiMTAyNTU5MTcwMTcxMS1wM25qdm9wajY4anNkbnA4bnA0dTQ2ZHRlM2cwbzljaC5hcHBzLmdvb2dsZXVzZXJjb250ZW50LmNvbSIsInN1YiI6IjExNjcwNDA1OTY0NTQxNDQ3NDQyNiIsImVtYWlsIjoicHRwaHVjMTYxMUBnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwibmFtZSI6IlRvw6BuIFBow7pjIFBo4bqhbSIsInBpY3R1cmUiOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS9BQVRYQUp3UTVJSDE1MG1oYTRvTzhiVjFPbkpnbGsyWHgxRGthUFpPdV9hVT1zOTYtYyIsImdpdmVuX25hbWUiOiJUb8OgbiBQaMO6YyIsImZhbWlseV9uYW1lIjoiUGjhuqFtIiwibG9jYWxlIjoidmkiLCJpYXQiOjE2NTI0MjM0OTIsImV4cCI6MTY1MjQyNzA5Mn0.MSEcAEcUGDaXGaXUeswPhsY9ALijAfIxHAT_nJeh_LPM7Ot7Ktku8i487t24us_1uTlsh_L4jZxWVaW3klfBaOLso_5AU6EazkU6RvVuTH6WuF6plEYoCruQ2EXz55QlVe8CRjqV3BDqVyyYD8nNuiqLvIRsJi804eMCcb0kfO03YVO3HRuGUf_x1K-yY9bxksTUwwnEdn3acS5OII162bgnZ4aHcJb4CDu6W1kV7IcyIHBVNsSZ8qnreLBHWYv6l2rz1RkFFUYR4IXaR0Cx0XUoT-KT-8yEAqPey5R7mXyYcegljoAyvGQDuqd43kjlPbkuHG6YFIPVK4XYBCxk7A",
-    "status": 200,
-    "timeout": 0,
-    "upload": {},
-    "withCredentials": true
-  },
-  "status": 200,
-  "statusText": undefined
+  "_X": null
 }
