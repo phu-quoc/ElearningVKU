@@ -39,7 +39,6 @@ export const logoutHandler =async ()=>{
         },
     }).then(response => {
         AsyncStorage.removeItem("@Token")
-        console.log("logout", response)
     }).catch(error => {
         console.error(error.message);
     })

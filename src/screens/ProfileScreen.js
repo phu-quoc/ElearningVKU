@@ -15,20 +15,26 @@ import FontAweSome5 from 'react-native-vector-icons/FontAwesome5'
 import ProfileItem from '../components/ProfileItem';
 import ProfileSettingScreen from '../screens/ProfileSettingScreen'
 import { getAuthUser } from '../api/Common';
-
+import { getAllDepartments } from '../api/ProfileAPI';
 
 function ProfileScreen({ navigation, route }) {
   const [pressed, setPressed] = useState(false);
+  const [department, setDepartment] = useState("");
   const [user, setUser] = useState(route.params?.user);
-  const btEditToggle = () => {
+  const btEditToggle = async () => {
     setPressed(!pressed);
+    console.log("department: ", department);
   }
   const [refreshing, setFreshing] = useState(false);
   const onRefresh = () => {
     setFreshing(true);
     getAuthUser(setUser);
     setFreshing(false);
+    console.log(user)
   }
+  // useEffect(()=>{ 
+  //   getAllDepartments(setDepartmentss)
+  // }, [])
 
   return (
     <View style={{ flex: 1, backgroundColor: '#fff', }}>
@@ -57,20 +63,20 @@ function ProfileScreen({ navigation, route }) {
             <Text>{user?.data?.email}</Text>
           </View>
         </View>
-        <Drawer.Section title="Profile" style={styles.drawerSection}>
-          <ProfileItem title="Department" value="Computer Science" />
-          {user.data.user_type ? // user_type
+        <Drawer.Section title="Hồ Sơ" style={styles.drawerSection}>
+          <ProfileItem title="Khoa" value={user?.data?.student?.activity_class?.department?.name} />
+          {user?.data?.user_type ? // user_type
             <View>
-              <ProfileItem title="Class" value="20GIT" />
-              <ProfileItem title="Major" value="IT" />
+              <ProfileItem title="Lớp" value={user?.data?.student?.activity_class?.name} />
+              {/* <ProfileItem title="Chuyên ngành" value="IT" /> */}
             </View> :
             <View>
-              <ProfileItem title="Degree" value="PhD." />
+              <ProfileItem title="Trình độ" value="PhD." />
             </View>
           }
-          <ProfileItem title="Phone number" value={user.data.phone} />
+          <ProfileItem title="Điện thoại" value={user?.data?.phone} />
         </Drawer.Section>
-        {pressed ? <ProfileSettingScreen /> : null}
+        {pressed ? <ProfileSettingScreen departments={department} /> : null}
       </ScrollView>
     </View>
   )

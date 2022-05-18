@@ -92,12 +92,12 @@ export default function DrawerContent(props) {
 
               <View style={styles.row}>
                 <View style={styles.section}>
-                  <Caption style={styles.caption}>Class </Caption>
-                  <Paragraph style={[styles.paragraph, styles.caption]}> 20GIT</Paragraph>
+                  <Caption style={styles.caption}>Lớp: </Caption>
+                  <Paragraph style={[styles.paragraph, styles.caption]}> {user?.data?.student?.activity_class?.name}</Paragraph>
                 </View>
                 <View style={styles.section}>
-                  <Caption style={styles.caption}>Der. </Caption>
-                  <Paragraph style={[styles.paragraph, styles.caption]}>Computer Science</Paragraph>
+                  <Caption style={styles.caption}>Khoa: </Caption>
+                  <Paragraph style={[styles.paragraph, styles.caption]}>{user?.data?.student?.activity_class?.department?.name}</Paragraph>
                 </View>
               </View>
             </View>
