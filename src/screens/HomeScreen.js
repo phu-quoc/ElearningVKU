@@ -1,13 +1,27 @@
-import React from 'react';
-import { FlatList, StyleSheet, Text, View, TouchableHighlight, } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { FlatList, StyleSheet, Text, View, TouchableHighlight, RefreshControl, } from 'react-native';
 import { CourseCard } from '../components';
 import { COURSE_DETAILS_SCREEN_NAME, CREATE_COURSE_SCREEN_NAME } from '../constants/routeNames';
 import FloatingBottomButton from '../components/FloatingBottomButton';
+import { getAuthUser } from '../api/Common'
 
 function HomeScreen({ navigation }) {
-  const pressButtonHandler=()=>{ 
+  const [user, setUser] = useState({})
+  const [refreshing, setFreshing] = useState(false);
+  const onRefresh = () => {
+    setFreshing(true);
+    getAuthUser(setUser);
+    setFreshing(false);
+  }
+  const pressButtonHandler = () => {
     navigation.navigate(CREATE_COURSE_SCREEN_NAME)
   }
+
+  useEffect(() => {
+    getAuthUser(setUser)
+    console.log("auth", user)
+  }, [])
+  
   return (
     <View style={styles.container}>
       <FlatList
@@ -21,6 +35,11 @@ function HomeScreen({ navigation }) {
           { key: '7', name: 'Lap trinh di dong' },
           { key: '8', name: 'Mang may tinh' },
         ]}
+        refreshControl={
+          <RefreshControl
+            refreshing={refreshing}
+            onRefresh={onRefresh}
+          />}
         showsVerticalScrollIndicator={false}
         renderItem={({ item, index }) => (
           <CourseCard
@@ -29,7 +48,7 @@ function HomeScreen({ navigation }) {
           />
         )}
       />
-      <FloatingBottomButton icon="plus" onPress={pressButtonHandler}/>   
+      {user?.data?.user_type == 2 ? <FloatingBottomButton icon="plus" onPress={pressButtonHandler} /> : null}
     </View>
   )
 }

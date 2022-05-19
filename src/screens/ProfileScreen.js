@@ -32,9 +32,9 @@ function ProfileScreen({ navigation, route }) {
     setFreshing(false);
     console.log(user)
   }
-  // useEffect(()=>{ 
-  //   getAllDepartments(setDepartmentss)
-  // }, [])
+  useEffect(()=>{ 
+    getAllDepartments(setDepartment)
+  }, [])
 
   return (
     <View style={{ flex: 1, backgroundColor: '#fff', }}>

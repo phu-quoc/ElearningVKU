@@ -7,31 +7,26 @@ import {
 import TextInputComponent from '../components/TextInputComponent';
 import DropdownComponent from '../components/DropdownComponent';
 import HeaderCreatingScreenCmp from '../components/HeaderCreatingScreenCmp';
+import {getAllCategories, createCourse } from '../api/CourseAPI'
 
 export default function CreateCourseScreen({ navigation, route }) {
     const [selectCategory, setSelectedCategory] = useState("")
     const [text, setText] = useState("")
-    const categories = [
-        {
-            "id": 1,
-            "name": "Đại cương",
-            "department_id": 1,
-        },
-        {
-            "id": 2,
-            "name": "Chuyên ngành",
-            "department_id": 1,
-        },
-    ]
+    const [categories, setCategories] = useState([])
 
-    const categoriesData = categories.map(clasItem => ({ value: clasItem.id, text: clasItem.name }));
+    const categoriesData = categories.map(categoryITem => ({ value: categoryITem.id, text: categoryITem.name }));
     const CategoryHandler = (value) => {
-        alert("id: " + value)
         setSelectedCategory(value)
     }
+    const createCourseHandler = ()=>{ 
+        createCourse(selectCategory, text)
+    }
+    useEffect(() => {
+        getAllCategories(setCategories)
+    }, [])
     return (
         <View style={{ flex: 1 }}>
-            <HeaderCreatingScreenCmp title="Tạo lớp học" navigation={navigation} />
+            <HeaderCreatingScreenCmp onPress={createCourseHandler} title="Tạo lớp học" navigation={navigation} />
             <DropdownComponent data={categoriesData} onSelect={CategoryHandler}
                 placeholder="Danh mục" value={selectCategory}
             />

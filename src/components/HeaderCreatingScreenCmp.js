@@ -32,7 +32,7 @@ export default function HeaderCreatingScreenCmp(props) {
         </Drawer.Section>
 
       </View>
-      <TouchableOpacity style={styles.btnCreate}>
+      <TouchableOpacity style={styles.btnCreate} onPress={props.onPress}>
         <Text style={styles.text}>Tạo</Text>
       </TouchableOpacity>
     </View>
