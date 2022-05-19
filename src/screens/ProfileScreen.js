@@ -64,14 +64,15 @@ function ProfileScreen({ navigation, route }) {
           </View>
         </View>
         <Drawer.Section title="Hồ Sơ" style={styles.drawerSection}>
-          <ProfileItem title="Khoa" value={user?.data?.student?.activity_class?.department?.name} />
-          {user?.data?.user_type ? // user_type
+          {user?.data?.user_type==1 ? // user_type
             <View>
+              <ProfileItem title="Khoa" value={user?.data?.student?.activity_class?.department?.name} />
               <ProfileItem title="Lớp" value={user?.data?.student?.activity_class?.name} />
               {/* <ProfileItem title="Chuyên ngành" value="IT" /> */}
             </View> :
             <View>
-              <ProfileItem title="Trình độ" value="PhD." />
+              <ProfileItem title="Khoa" value={user?.data?.lecturer?.department?.name} />
+              <ProfileItem title="Trình độ" value={user?.data?.lecturer?.degree?.name} />
             </View>
           }
           <ProfileItem title="Điện thoại" value={user?.data?.phone} />

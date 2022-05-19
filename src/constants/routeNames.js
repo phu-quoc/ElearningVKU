@@ -10,3 +10,6 @@ export const DRAWER_NAVIGATOR_NAME = 'DrawerNavigator';
 export const NOTIFICATIONS_NATIVE_STACK_NAME =
   'NotificationsNativeStackNavigator';
 export const PROFILE_SCREEN_NAME = 'Profile'
+export const CREATE_COURSE_SCREEN_NAME= 'CreateCourseScreen'
+export const CREATE_ASSIGNMENT_SCREEN_NAME= 'CreateAssignmentScreen'
+export const CREATE_DOCUMENT_SCREEN_NAME= 'CreateDocumentScreen'

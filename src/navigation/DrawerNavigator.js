@@ -5,12 +5,19 @@ import React from 'react';
 import {
     BOTTOM_TABS_NAVIGATOR_NAME,
     COURSE_DETAILS_SCREEN_NAME,
+    CREATE_COURSE_SCREEN_NAME,
     PROFILE_SCREEN_NAME,
+    CREATE_ASSIGNMENT_SCREEN_NAME,
+    CREATE_DOCUMENT_SCREEN_NAME
 } from '../constants/routeNames';
 import CourseDetailsScreen from '../screens/CourseDetailsScreen';
 import BottomTabsNavigator from './BottomTabsNavigator';
 import DrawerContent from '../screens/DrawerContent';
 import ProfileScreen from '../screens/ProfileScreen';
+import CreateCourseScreen from '../screens/CreateCourseScreen';
+import CreateAssignmentScreen from '../screens/CreateAssignmentScreen';
+import CreateDocumentScreen from '../screens/CreateDocumentScreen';
+
 const Drawer = createDrawerNavigator();
 
 function DrawerNavigator() {
@@ -23,6 +30,9 @@ function DrawerNavigator() {
             <Drawer.Screen name={BOTTOM_TABS_NAVIGATOR_NAME} component={BottomTabsNavigator} options={{ headerShown: false }} />
             <Drawer.Screen name={COURSE_DETAILS_SCREEN_NAME} component={CourseDetailsScreen} options={{ headerLeft: false }} />
             <Drawer.Screen name={PROFILE_SCREEN_NAME} component={ProfileScreen} options={{ headerShown: false }} />
+            <Drawer.Screen name={CREATE_COURSE_SCREEN_NAME} component={CreateCourseScreen} options={{ headerShown: false }} />
+            <Drawer.Screen name={CREATE_ASSIGNMENT_SCREEN_NAME} component={CreateAssignmentScreen} options={{ headerShown: false }} />
+            <Drawer.Screen name={CREATE_DOCUMENT_SCREEN_NAME} component={CreateDocumentScreen} options={{ headerShown: false }} />
         </Drawer.Navigator>
     );
 }

@@ -90,16 +90,28 @@ export default function DrawerContent(props) {
                 </View>
               </View>
 
-              <View style={styles.row}>
-                <View style={styles.section}>
-                  <Caption style={styles.caption}>Lớp: </Caption>
-                  <Paragraph style={[styles.paragraph, styles.caption]}> {user?.data?.student?.activity_class?.name}</Paragraph>
+              {user?.data?.user_type == 1 ?
+                <View style={styles.row}>
+                  <View style={styles.section}>
+                    <Caption style={styles.caption}>Lớp: </Caption>
+                    <Paragraph style={[styles.paragraph, styles.caption]}> {user?.data?.student?.activity_class?.name}</Paragraph>
+                  </View>
+                  <View style={styles.section}>
+                    <Caption style={styles.caption}>Khoa: </Caption>
+                    <Paragraph style={[styles.paragraph, styles.caption]}>{user?.data?.student?.activity_class?.department?.name}</Paragraph>
+                  </View>
                 </View>
-                <View style={styles.section}>
-                  <Caption style={styles.caption}>Khoa: </Caption>
-                  <Paragraph style={[styles.paragraph, styles.caption]}>{user?.data?.student?.activity_class?.department?.name}</Paragraph>
+                :
+                <View style={styles.row}>
+                  <View style={styles.section}>
+                    <Paragraph style={[styles.paragraph, styles.caption]}> {user?.data?.lecturer?.degree?.name}</Paragraph>
+                  </View>
+                  <View style={styles.section}>
+                    <Caption style={styles.caption}>Khoa: </Caption>
+                    <Paragraph style={[styles.paragraph, styles.caption]}>{user?.data?.lecturer?.department?.name}</Paragraph>
+                  </View>
                 </View>
-              </View>
+              }
             </View>
             : <GoogleSigninButton
               style={{ width: 280, height: 55 }}
