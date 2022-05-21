@@ -1,20 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
-  Text, View, StyleSheet, Modal, Alert, TouchableOpacity,
-  TouchableHighlight
+  Text, View, StyleSheet, Modal, Alert,
+  TouchableOpacity, TouchableHighlight, Pressable,
+  SectionList, FlatList, RefreshControl,
 } from 'react-native';
 import FloatingBottomButton from '../components/FloatingBottomButton';
 import { DrawerItem } from '@react-navigation/drawer'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Drawer } from 'react-native-paper';
 import TextInputComponent from '../components/TextInputComponent';
-import Pressable from 'react-native/Libraries/Components/Pressable/Pressable';
 import { CREATE_ASSIGNMENT_SCREEN_NAME, CREATE_DOCUMENT_SCREEN_NAME } from '../constants/routeNames';
+import { getAuthUser } from '../api/Common'
+import { getCourse } from '../api/CourseAPI'
+import {addTopic} from '../api/TopicAPI'
+import TopicCard from '../components/TopicCard';
 
-function CourseDetailsScreen({ navigation }) {
+function CourseDetailsScreen({ navigation, route }) {
   const [modalVisible, setModalVisible] = useState(false) //main modal show menu
   const [modalTopicView, setModalTopicView] = useState(false) //modal add topic
-  const [topic, setTopic] = useState("")
+  const [newTopic, setNewTopic] = useState("")
+  const [course, setCourse] = useState(route.params?.course)
+  const [user, setUser] = useState(route.params?.user)
+  const [refreshing, setFreshing] = useState(false);
 
   const pressButtonHandler = () => {
     setModalVisible(!modalVisible)
@@ -24,13 +31,39 @@ function CourseDetailsScreen({ navigation }) {
     setModalTopicView(true)
   }
   const AddTopicHandler = () => {
+    if(newTopic.length <=0){
+      console.error("Vui lòng nhập chủ đề!")
+      return;
+    }
+    addTopic(newTopic, course.key)
     setModalTopicView(false);
-    alert(topic)
+  }
+  useEffect(() => {
+    getAuthUser(setUser)
+    // getCourse(course.key, setCourse)
+  }, [])
+  const onRefresh = () => {
+    getAuthUser(setUser)
+    alert("ok")
   }
 
   return (
     <View style={{ flex: 1 }}>
-      <FloatingBottomButton icon="plus" onPress={pressButtonHandler} />
+      {/* <FlatList
+        data={course.topics}
+        refreshControl={
+          <RefreshControl
+            refreshing={refreshing}
+            onRefresh={onRefresh}
+          />
+        }
+        showsVerticalScrollIndicator={false}
+        renderItem={({ item , index }) => (
+          <TopicCard title={item.name} id={item.id} index={item.index} topic={course.topics[index]} />
+        )}
+      /> */}
+
+      {user?.data?.user_type == 2 ? <FloatingBottomButton icon="plus" onPress={pressButtonHandler} /> : null}
       <Modal
         animationType="slide"
         visible={modalTopicView}
@@ -52,7 +85,7 @@ function CourseDetailsScreen({ navigation }) {
               />
             </TouchableHighlight>
             <View style={{ width: 280, }}>
-              <TextInputComponent placeholder="Nhập chủ đề" value={topic} onChangeText={setTopic} />
+              <TextInputComponent placeholder="Nhập chủ đề" value={newTopic} onChangeText={setNewTopic} />
             </View>
             <Pressable onPress={AddTopicHandler} style={styles.btnAddTopic}>
               <Text style={styles.text}>Thêm</Text>

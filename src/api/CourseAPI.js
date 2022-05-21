@@ -39,7 +39,7 @@ export const createCourse = async (categoryID, courseName) => {
 
 export const getCourses = async (setCourses) => {
   const token = await getToken();
-  axios.get(`${BASE_URL}course`, {
+  axios.get(`${BASE_URL}get-course-of-user`, {
     headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json',
@@ -48,6 +48,20 @@ export const getCourses = async (setCourses) => {
   }).then(response => {
     console.log("get courses: ", response.data);
     setCourses(response.data)
+  }).catch(error => {
+    console.error(error.message);
+  })
+}
+export const getCourse = (id, setCourse) => {
+  // get course detail
+  axios.get(`${BASE_URL}course/${id}`, {
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+    },
+  }).then(response => {
+    console.log(response.data)
+    setCourse(response.data)
   }).catch(error => {
     console.error(error.message);
   })

@@ -3,11 +3,12 @@ import {
     Text,
     View,
     StyleSheet,
+    ToastAndroid
 } from 'react-native';
 import TextInputComponent from '../components/TextInputComponent';
 import DropdownComponent from '../components/DropdownComponent';
 import HeaderCreatingScreenCmp from '../components/HeaderCreatingScreenCmp';
-import {getAllCategories, createCourse } from '../api/CourseAPI'
+import { getAllCategories, createCourse } from '../api/CourseAPI'
 
 export default function CreateCourseScreen({ navigation, route }) {
     const [selectCategory, setSelectedCategory] = useState("")
@@ -18,8 +19,13 @@ export default function CreateCourseScreen({ navigation, route }) {
     const CategoryHandler = (value) => {
         setSelectedCategory(value)
     }
-    const createCourseHandler = ()=>{ 
-        createCourse(selectCategory, text)
+    const createCourseHandler = () => {
+        if(text.length <=0){
+            console.error("Vui lòng nhập tên khóa học")
+        }else{
+            ToastAndroid.showWithGravity("Đang tạo lớp học!", ToastAndroid.SHORT, ToastAndroid.CENTER);
+            createCourse(selectCategory, text)
+        }
     }
     useEffect(() => {
         getAllCategories(setCategories)

@@ -16,6 +16,7 @@ function HomeScreen({ navigation }) {
   const [courses, setCourses] = useState([])
   const onRefresh = () => {
     // sau khi login, refresh de load lai du lieu
+    ToastAndroid.showWithGravity("Đang cập nhật!", ToastAndroid.SHORT, ToastAndroid.CENTER);
     setFreshing(true);
     getAuthUser(setUser);
     getCourses(setCourses)
@@ -47,7 +48,7 @@ function HomeScreen({ navigation }) {
         renderItem={({ item, index }) => (
           <CourseCard
             course={item}
-            onPress={() => navigation.navigate(COURSE_DETAILS_SCREEN_NAME)}
+            onPress={() => navigation.navigate(COURSE_DETAILS_SCREEN_NAME, {course : item, user: user})}
           />
         )}
       />
