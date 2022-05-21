@@ -1,40 +1,43 @@
 import React, { useState, useEffect } from 'react';
-import { FlatList, StyleSheet, Text, View, TouchableHighlight, RefreshControl, } from 'react-native';
+import {
+  FlatList, StyleSheet,
+  Text, View, TouchableHighlight,
+  RefreshControl, ToastAndroid
+} from 'react-native';
 import { CourseCard } from '../components';
 import { COURSE_DETAILS_SCREEN_NAME, CREATE_COURSE_SCREEN_NAME } from '../constants/routeNames';
 import FloatingBottomButton from '../components/FloatingBottomButton';
 import { getAuthUser } from '../api/Common'
+import { getCourses } from '../api/CourseAPI'
 
 function HomeScreen({ navigation }) {
   const [user, setUser] = useState({})
   const [refreshing, setFreshing] = useState(false);
+  const [courses, setCourses] = useState([])
   const onRefresh = () => {
+    // sau khi login, refresh de load lai du lieu
     setFreshing(true);
     getAuthUser(setUser);
+    getCourses(setCourses)
     setFreshing(false);
   }
   const pressButtonHandler = () => {
     navigation.navigate(CREATE_COURSE_SCREEN_NAME)
   }
+  const coursesData = courses.map(courseItem => ({ key: courseItem.id, name: courseItem.name }))
 
   useEffect(() => {
     getAuthUser(setUser)
     console.log("auth", user)
   }, [])
-  
+  useEffect(() => {
+    getCourses(setCourses)
+  }, [])
+
   return (
     <View style={styles.container}>
       <FlatList
-        data={[
-          { key: '1', name: 'Lap trinh di dong' },
-          { key: '2', name: 'Mang may tinh' },
-          { key: '3', name: 'Lap trinh di dong' },
-          { key: '4', name: 'Mang may tinh' },
-          { key: '5', name: 'Lap trinh di dong' },
-          { key: '6', name: 'Mang may tinh' },
-          { key: '7', name: 'Lap trinh di dong' },
-          { key: '8', name: 'Mang may tinh' },
-        ]}
+        data={coursesData}
         refreshControl={
           <RefreshControl
             refreshing={refreshing}

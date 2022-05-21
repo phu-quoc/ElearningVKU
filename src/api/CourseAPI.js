@@ -33,6 +33,22 @@ export const createCourse = async (categoryID, courseName) => {
     ToastAndroid.showWithGravity("Tạo lớp học thành công!", ToastAndroid.SHORT, ToastAndroid.CENTER);
   }).catch(error => {
     console.error(error.code)
-    
+
+  })
+}
+
+export const getCourses = async (setCourses) => {
+  const token = await getToken();
+  axios.get(`${BASE_URL}course`, {
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`,
+    },
+  }).then(response => {
+    console.log("get courses: ", response.data);
+    setCourses(response.data)
+  }).catch(error => {
+    console.error(error.message);
   })
 }
