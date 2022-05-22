@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {NavigationContainer} from '@react-navigation/native';
-import DrawerNavigator from './DrawerNavigator';
 import NotificationNativeStackNavigator from './NotificationsNativeStackNavigator';
+import LoginScreen from '../screens/LoginScreen';
 
 function AppNavigation() {
+
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
   return (
     <NavigationContainer>
-      <NotificationNativeStackNavigator />
+      {isLoggedIn ? <NotificationNativeStackNavigator /> : <LoginScreen />}
     </NavigationContainer>
   );
 }
