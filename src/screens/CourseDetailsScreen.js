@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {
-  Text, View, StyleSheet, Modal, Alert,
+  Text, View, StyleSheet, Modal, ToastAndroid,
   TouchableOpacity, TouchableHighlight, Pressable,
   SectionList, FlatList, RefreshControl,
 } from 'react-native';
@@ -12,7 +12,7 @@ import TextInputComponent from '../components/TextInputComponent';
 import { CREATE_ASSIGNMENT_SCREEN_NAME, CREATE_DOCUMENT_SCREEN_NAME } from '../constants/routeNames';
 import { getAuthUser } from '../api/Common'
 import { getCourse } from '../api/CourseAPI'
-import {addTopic} from '../api/TopicAPI'
+import { addTopic } from '../api/TopicAPI'
 import TopicCard from '../components/TopicCard';
 
 function CourseDetailsScreen({ navigation, route }) {
@@ -20,6 +20,7 @@ function CourseDetailsScreen({ navigation, route }) {
   const [modalTopicView, setModalTopicView] = useState(false) //modal add topic
   const [newTopic, setNewTopic] = useState("")
   const [course, setCourse] = useState(route.params?.course)
+  const [topics, setTopics] = useState()
   const [user, setUser] = useState(route.params?.user)
   const [refreshing, setFreshing] = useState(false);
 
@@ -31,26 +32,26 @@ function CourseDetailsScreen({ navigation, route }) {
     setModalTopicView(true)
   }
   const AddTopicHandler = () => {
-    if(newTopic.length <=0){
+    if (newTopic.length <= 0) {
       console.error("Vui lòng nhập chủ đề!")
       return;
     }
-    addTopic(newTopic, course.key)
+    ToastAndroid.showWithGravity("Đang thêm chủ đề!", ToastAndroid.SHORT, ToastAndroid.CENTER);
+    addTopic(newTopic, course?.key ? course.key : course.id, topics, setTopics)
     setModalTopicView(false);
   }
   useEffect(() => {
     getAuthUser(setUser)
-    // getCourse(course.key, setCourse)
+    getCourse(course?.key ? course.key : course.id, setCourse, setTopics)
   }, [])
   const onRefresh = () => {
     getAuthUser(setUser)
-    alert("ok")
   }
 
   return (
     <View style={{ flex: 1 }}>
-      {/* <FlatList
-        data={course.topics}
+      <FlatList
+        data={topics}
         refreshControl={
           <RefreshControl
             refreshing={refreshing}
@@ -58,10 +59,10 @@ function CourseDetailsScreen({ navigation, route }) {
           />
         }
         showsVerticalScrollIndicator={false}
-        renderItem={({ item , index }) => (
-          <TopicCard title={item.name} id={item.id} index={item.index} topic={course.topics[index]} />
+        renderItem={({ item, index }) => (
+          <TopicCard title={item.name} id={item.id} index={item.index} topic={topics[index]} />
         )}
-      /> */}
+      />
 
       {user?.data?.user_type == 2 ? <FloatingBottomButton icon="plus" onPress={pressButtonHandler} /> : null}
       <Modal

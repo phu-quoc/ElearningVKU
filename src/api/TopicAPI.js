@@ -4,7 +4,7 @@ import {
   ToastAndroid,
 } from 'react-native'
 
-export const addTopic = async (name, course_id) => {
+export const addTopic = async (name, course_id,topics, setTopics) => {
   const token = await getToken();
   axios.post(`${BASE_URL}topic`, {
     name: name,
@@ -17,7 +17,8 @@ export const addTopic = async (name, course_id) => {
     }
   }
   ).then(response => {
-    ToastAndroid.showWithGravity("Tạo lớp học thành công!", ToastAndroid.SHORT, ToastAndroid.CENTER);
+    ToastAndroid.showWithGravity("Tạo chủ đề thành công!", ToastAndroid.SHORT, ToastAndroid.CENTER);
+    setTopics([...topics, response.data])
   }).catch(error => {
     console.error(error.code)
 

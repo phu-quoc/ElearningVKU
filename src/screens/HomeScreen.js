@@ -26,19 +26,20 @@ function HomeScreen({ navigation }) {
     navigation.navigate(CREATE_COURSE_SCREEN_NAME)
   }
   const coursesData = courses.map(courseItem => ({ key: courseItem.id, name: courseItem.name }))
-
+  console.log(coursesData)
+  const fakeData= [{ key: 1, name: 'Chủ đề'}]
   useEffect(() => {
     getAuthUser(setUser)
     console.log("auth", user)
   }, [])
   useEffect(() => {
     getCourses(setCourses)
-  }, [])
+  },[])
 
   return (
     <View style={styles.container}>
       <FlatList
-        data={coursesData}
+        data={coursesData.length? coursesData: fakeData}
         refreshControl={
           <RefreshControl
             refreshing={refreshing}

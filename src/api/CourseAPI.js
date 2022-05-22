@@ -52,7 +52,7 @@ export const getCourses = async (setCourses) => {
     console.error(error.message);
   })
 }
-export const getCourse = (id, setCourse) => {
+export const getCourse = (id, setCourse, setTopics) => {
   // get course detail
   axios.get(`${BASE_URL}course/${id}`, {
     headers: {
@@ -62,6 +62,7 @@ export const getCourse = (id, setCourse) => {
   }).then(response => {
     console.log(response.data)
     setCourse(response.data)
+    setTopics(response.data.topics)
   }).catch(error => {
     console.error(error.message);
   })

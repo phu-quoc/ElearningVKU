@@ -11,23 +11,22 @@ import FontAweSome5 from 'react-native-vector-icons/FontAwesome5'
 export default function TopicCard(props) {
   const [topic, setTopic] = useState(props.topic);
   console.log('topic', topic)
+  console.log('resources: ', topic.resources)
 
   return (
     <View style={styles.parentContainer}>
       <Text style={styles.title}>{props.title}</Text>
       <View style={styles.childContainer}>
         <Drawer.Section>
-        {topic.assignments.forEach(assignment =>(
+        {topic?.resources? topic.resources.map(resource =>(
           <DrawerItem 
-            // label={assignment.title}
-            lable="Hi"
+            label={resource.title}
             icon ={()=>(
               <FontAweSome5  name="book" size={30}/>
             )}
           />
-        ))}
+        )):null}
         </Drawer.Section>
-        <Text>Blah Blah Blah</Text>
       </View>
     </View>
   )
