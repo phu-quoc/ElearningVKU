@@ -19,6 +19,8 @@ target 'ElearningVKU' do
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
 
+  pod 'RNDateTimePicker', :path => '../node_modules/@react-native-community/datetimepicker'
+
   target 'ElearningVKUTests' do
     inherit! :complete
     # Pods for testing
