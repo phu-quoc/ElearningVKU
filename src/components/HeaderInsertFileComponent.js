@@ -32,7 +32,7 @@ export default function HeaderInsertFileComponent(props) {
           <Text style={styles.headerTitle}>{props.title}</Text>
         </Drawer.Section>
         <View style={{ flexDirection: 'row',fontWeight:"bold" }}>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={props.onSelectFiles}>
             <Icon
               name="paperclip"
               color={'#000000'}
@@ -41,7 +41,7 @@ export default function HeaderInsertFileComponent(props) {
           </TouchableOpacity>
         </View>
       </View>
-      <TouchableOpacity style={styles.btnCreate}>
+      <TouchableOpacity style={styles.btnCreate} onPress={props.onSent}>
         <FontAweSome5
           name="paper-plane"
           color={'#000000'}

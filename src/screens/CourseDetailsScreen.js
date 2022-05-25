@@ -60,7 +60,9 @@ function CourseDetailsScreen({ navigation, route }) {
         }
         showsVerticalScrollIndicator={false}
         renderItem={({ item, index }) => (
-          <TopicCard title={item.name} id={item.id} index={item.index} topic={topics[index]} />
+          <TopicCard title={item.name} id={item.id} index={item.index}
+            topic={topics[index]} navigation={navigation}
+          />
         )}
       />
 
@@ -127,7 +129,7 @@ function CourseDetailsScreen({ navigation, route }) {
               label="Bài tập"
               onPress={() => {
                 setModalVisible(false)
-                navigation.navigate(CREATE_ASSIGNMENT_SCREEN_NAME)
+                navigation.navigate(CREATE_ASSIGNMENT_SCREEN_NAME, { courseId: course?.key ? course.key : course.id })
               }}
             />
             <DrawerItem
@@ -141,7 +143,7 @@ function CourseDetailsScreen({ navigation, route }) {
               label="Tài liệu"
               onPress={() => {
                 setModalVisible(false)
-                navigation.navigate(CREATE_DOCUMENT_SCREEN_NAME)
+                navigation.navigate(CREATE_DOCUMENT_SCREEN_NAME, { courseId: course?.key ? course.key : course.id })
               }}
             />
           </Drawer.Section>

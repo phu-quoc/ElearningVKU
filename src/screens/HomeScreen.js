@@ -27,7 +27,7 @@ function HomeScreen({ navigation }) {
   }
   const coursesData = courses.map(courseItem => ({ key: courseItem.id, name: courseItem.name }))
   console.log(coursesData)
-  const fakeData= [{ key: 1, name: 'Chủ đề'}]
+  const fakeData= [{ key: 1, name: 'Lớp'}]
   useEffect(() => {
     getAuthUser(setUser)
     console.log("auth", user)

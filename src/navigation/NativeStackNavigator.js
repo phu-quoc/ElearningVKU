@@ -9,8 +9,11 @@ import {
   COURSE_DETAILS_SCREEN_NAME,
   NOTIFICATIONS_SCREEN_NAME,
   TOP_TABS_NAVIGATOR_NAME,
+  ASSIGNMENT_DETAIL_SCREEN_NAME
+
 } from '../constants/routeNames';
 import { NotificationButton } from '../components';
+import AssignmentDetailScreen from '../screens/AssignmentDetailScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -26,6 +29,10 @@ function NativeStackNavigator({navigation}) {
         name={COURSE_DETAILS_SCREEN_NAME}
         component={CourseDetailsScreen}
       />
+      {/* <Stack.Screen
+        name={ASSIGNMENT_DETAIL_SCREEN_NAME}
+        component={AssignmentDetailScreen}
+      /> */}
     </Stack.Navigator>
   );
 }
