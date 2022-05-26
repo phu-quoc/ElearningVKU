@@ -1,4 +1,4 @@
-import {ADD_COURSES, GET_COURSES, GET_COURSE_DETAILS} from '../actions/actions';
+import {ADD_COURSES, GET_COURSES, GET_COURSE_DETAILS} from '../actions/courseActions';
 
 const initialState = {
   courses: [],

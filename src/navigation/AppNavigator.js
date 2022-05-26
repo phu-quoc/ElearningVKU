@@ -1,14 +1,28 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import NotificationNativeStackNavigator from './NotificationsNativeStackNavigator';
 import LoginScreen from '../screens/LoginScreen';
+import {useDispatch, useSelector} from 'react-redux';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {autoLogin} from '../redux/actions/authActions';
+import {getToken} from '../api/Common';
 
 function AppNavigation() {
-
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const isAuth = useSelector(state => state.auth.isAuth);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    async function getToken() {
+      const token = await AsyncStorage.getItem('@Token');
+      if (token) {
+        dispatch(autoLogin(token));
+      }
+    } 
+    getToken();
+  }, []);
   return (
     <NavigationContainer>
-      {isLoggedIn ? <NotificationNativeStackNavigator /> : <LoginScreen />}
+      {!isAuth && <LoginScreen />}
+      {isAuth && <NotificationNativeStackNavigator />}
     </NavigationContainer>
   );
 }

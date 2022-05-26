@@ -1,0 +1,23 @@
+{
+  "_U": 0,
+  "_V": 1,
+  "_W": {
+    "data": {
+      "created_at": "2022-05-07T00:46:47.000000Z",
+      "department_id": null,
+      "email": "ptphuc1611@gmail.com",
+      "email_verified_at": null,
+      "first_name": "Phạm",
+      "google_id": "eyJhbGciOiJSUzI1NiIsImtpZCI6ImZjYmQ3ZjQ4MWE4MjVkMTEzZTBkMDNkZDk0ZTYwYjY5ZmYxNjY1YTIiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJhenAiOiIxMDI1NTkxNzAxNzExLWpnbjBjaWsyNWYzdTEzOTZ2N2duMzRoZmswYzM1OWk1LmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwiYXVkIjoiMTAyNTU5MTcwMTcxMS1wM25qdm9wajY4anNkbnA4bnA0dTQ2ZHRlM2cwbzljaC5hcHBzLmdvb2dsZXVzZXJjb250ZW50LmNvbSIsInN1YiI6IjExNjcwNDA1OTY0NTQxNDQ3NDQyNiIsImVtYWlsIjoicHRwaHVjMTYxMUBnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwibmFtZSI6IlRvw6BuIFBow7pjIFBo4bqhbSIsInBpY3R1cmUiOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS9BQVRYQUp3UTVJSDE1MG1oYTRvTzhiVjFPbkpnbGsyWHgxRGthUFpPdV9hVT1zOTYtYyIsImdpdmVuX25hbWUiOiJUb8OgbiBQaMO6YyIsImZhbWlseV9uYW1lIjoiUGjhuqFtIiwibG9jYWxlIjoidmkiLCJpYXQiOjE2NTE4ODMyODAsImV4cCI6MTY1MTg4Njg4MH0.ITccdsSmF5HwPVnavfoXM8iVVQ8i__CXXSUSdLtnrghdjBGoJOZGKu9BeWdAfMLho1la2IwX8H6Zw2uVuu8rhQ1-qNdfDAHdDgoR3brc_6l4fgGcxJqruNkYWTZBVWWsMggDpSQ1uj8NQoe1TbKbWWJcoh7k89wk0NX_zfYBTS6be1dTk8Gs9Zpq8XB7SzBOrIDuYGA3tbNPK36ujHeR8iIUKJi45DrTd3PfYfmd90Ji5F4UBuvgnIVaQmUPlc42-T2ma0O9KtKUvU6Y1onxESRpfVz5k4mhwoHl9oplbpXykeCrd_TXoMgnp9R875rq55dw39DMAb2FAY85jvbPhQ",
+      "id": 5,
+      "image_feature_path": "https://lh3.googleusercontent.com/a/AATXAJwQ5IH150mha4oO8bV1OnJglk2Xx1DkaPZOu_aU=s96-c",
+      "last_name": "Toàn Phúc",
+      "phone": null,
+      "updated_at": "2022-05-07T00:46:47.000000Z",
+      "user_type": 1
+    },
+    "email": "ptphuc1611@gmail.com",
+    "name": "PhạmToàn Phúc"
+  },
+  "_X": null
+}
