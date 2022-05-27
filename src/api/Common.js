@@ -2,7 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 // dùng ngrok tạo host tới port 8000
 // ngrok httop 8000
-export const BASE_URL = "https://45a6-59-153-246-134.ap.ngrok.io" + "/api/"
+export const BASE_URL = "https://ac53-2402-9d80-409-1ee1-cdae-81b9-758f-a827.ap.ngrok.io" + "/api/"
 // export const BASE_URL = "" 
 
 export const getUser = async (setUser) => {
