@@ -25,7 +25,7 @@ export const createAssignment = async (topicID, title, description, deadline, fi
     console.log("error: ", error.message)
   }
 
-  axios.post(`${BASE_URL}assignment`, data, {
+  axios.post(`${BASE_URL_HEROKU}assignment`, data, {
     "headers": {
       'Accept': 'application/json',
       'Content-Type': `multipart/form-data`,
@@ -40,7 +40,7 @@ export const createAssignment = async (topicID, title, description, deadline, fi
 }
 
 export const getAssignment = (id, setAssignment) => {
-  axios.get(`${BASE_URL}assignment/${id}`, {
+  axios.get(`${BASE_URL_HEROKU}assignment/${id}`, {
     headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json',
@@ -54,6 +54,7 @@ export const getAssignment = (id, setAssignment) => {
 }
 
 export const turnIn = async (assignmentID, files) => {
+  console.log(assignmentID)
   const token = await getToken();
   const data = new FormData();
   data.append('assignmentID', assignmentID)

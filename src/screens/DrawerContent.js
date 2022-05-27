@@ -118,8 +118,7 @@ export default function DrawerContent(props) {
               )}
               label="Profile"
               onPress={() => {
-                getAuthUser(setUser)
-                props.navigation.navigate(PROFILE_SCREEN_NAME, { user: user })
+                props.navigation.navigate(PROFILE_SCREEN_NAME)
               }}
             />
             <DrawerItem

@@ -1,4 +1,4 @@
-import {GoogleSignin} from '@react-native-google-signin/google-signin';
+import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import auth from '@react-native-firebase/auth';
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -8,11 +8,12 @@ export const LOGIN = 'LOGIN';
 export const LOGOUT = 'LOGOUT';
 export const AUTO_LOGIN = 'AUTO_LOGIN';
 export const GET_USER = 'GET_USER';
+export const UPDATE_PROFILE ='UPDATE_PROFILE'
 
 export const login = () => async dispatch => {
   try {
     await GoogleSignin.hasPlayServices();
-    const {idToken} = await GoogleSignin.signIn();
+    const { idToken } = await GoogleSignin.signIn();
     // Create a Google credential with the token
     const googleCredential = auth.GoogleAuthProvider.credential(idToken);
     // Sign-in the user with the credential
@@ -60,25 +61,25 @@ export const login = () => async dispatch => {
 };
 
 export const getUser = token => async dispatch => {
-    try {
-        const response = await axios.get(
-            `${BASE_URL}/user`,
-            {
-              headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json',
-                Authorization: `Bearer ${token}`,
-              }
-            },
-          );
-          const user = await response.data;
-          dispatch({
-              type: GET_USER,
-              payload: user
-          });
-    } catch (error) {
+  try {
+    const response = await axios.get(
+      `${BASE_URL}/user`,
+      {
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        }
+      },
+    );
+    const user = await response.data;
+    dispatch({
+      type: GET_USER,
+      payload: user
+    });
+  } catch (error) {
     console.error(error.message);
-    }
+  }
 };
 
 export const autoLogin = token => dispatch => {
@@ -99,10 +100,33 @@ export const logout = token => async dispatch => {
     });
     await GoogleSignin.signOut();
     dispatch({
-        type: LOGOUT,
-        payload: ''
+      type: LOGOUT,
+      payload: ''
     });
   } catch (error) {
     console.error(error.message);
   }
 };
+
+export const updateProfile = (token, phone) => async dispatch => {
+  try {
+    const response = await axios.put(`${BASE_URL}/user/null`, {
+      data: {
+        phone: phone
+      }
+    }, {
+      "headers": {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
+      },
+    })
+    let user= response.data;
+    dispatch({
+      type: UPDATE_PROFILE,
+      payload: user,
+    })
+  }catch (error) {
+    console.error(error)
+  }
+}
