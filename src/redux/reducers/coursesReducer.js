@@ -1,11 +1,17 @@
-import {ADD_COURSES, GET_COURSES, GET_COURSE_OF_USER} from '../actions/courseActions';
+import { ADD_COURSES, GET_COURSES, GET_COURSES_OF_USER } from '../actions/courseActions';
 
 const initialState = {
   courses: [],
 };
 const coursesReducer = (state = initialState, action) => {
   switch (action.type) {
-    case GET_COURSE_OF_USER:
+    case GET_COURSES_OF_USER:
+      return {
+        ...state,
+        courses: action.payload,
+      };
+    case GET_COURSES_OF_USER:
+      console.log(action.payload)
       return {
         ...state,
         courses: action.payload,

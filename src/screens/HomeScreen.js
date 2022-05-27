@@ -1,25 +1,25 @@
-import React, {useEffect} from 'react';
-import {FlatList, StyleSheet, View} from 'react-native';
-import {useDispatch, useSelector} from 'react-redux';
+import React, { useEffect } from 'react';
+import { FlatList, StyleSheet, View } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
 import FloatingBottomButton from '../components/FloatingBottomButton';
-import {CourseCard} from '../components';
+import { CourseCard } from '../components';
 import {
   COURSE_DETAILS_SCREEN_NAME,
   CREATE_COURSE_SCREEN_NAME,
 } from '../constants/routeNames';
-import {getUser} from '../redux/actions/authActions';
-import {getCourseOfUser, getCourses} from '../redux/actions/courseActions';
+import { getUser } from '../redux/actions/authActions';
+import { getCourseOfUser } from '../redux/actions/courseActions';
 
-const HomeScreen = ({navigation}) => {
+const HomeScreen = ({ navigation }) => {
   const dispatch = useDispatch();
   const token = useSelector(state => state.auth.bearerToken);
   const courses = useSelector(state => state.courses.courses);
   const user = useSelector(state => state.auth.user);
 
   useEffect(() => {
-    dispatch(getCourseOfUser(""));
     dispatch(getUser(token));
-    console.log(token);
+    dispatch(getCourseOfUser(token))
+    console.log("token:", token);
   }, []);
 
   const pressButtonHandler = () => {
@@ -31,7 +31,7 @@ const HomeScreen = ({navigation}) => {
       <FlatList
         data={courses}
         showsVerticalScrollIndicator={false}
-        renderItem={({item, index}) => (
+        renderItem={({ item, index }) => (
           <CourseCard
             course={item}
             onPress={() =>

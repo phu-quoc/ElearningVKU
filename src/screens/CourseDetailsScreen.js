@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Text,
   View,
@@ -11,7 +11,7 @@ import {
   SectionList,
   FlatList,
 } from 'react-native';
-import {useDispatch, useSelector} from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import FloatingBottomButton from '../components/FloatingBottomButton';
 // import FloatingBottomButton from '../components/FloatingBottomButton';
 // import {DrawerItem} from '@react-navigation/drawer';
@@ -25,23 +25,24 @@ import TextInputComponent from '../components/TextInputComponent';
 // import {getAuthUser} from '../api/Common';
 // import {getCourse} from '../api/CourseAPI';
 // import {addTopic} from '../api/TopicAPI';
-import {TopicCard} from '../components/TopicCard';
+import { TopicCard } from '../components/TopicCard';
 // import {useDispatch, useSelector} from 'react-redux';
 import {
   CREATE_ASSIGNMENT_SCREEN_NAME,
   CREATE_DOCUMENT_SCREEN_NAME,
 } from '../constants/routeNames';
-import {DrawerItem} from '@react-navigation/drawer';
-import {Drawer} from 'react-native-paper';
+import { DrawerItem } from '@react-navigation/drawer';
+import { Drawer } from 'react-native-paper';
 import { addTopic, getTopicsByCourse } from '../redux/actions/topicActions';
 
-function CourseDetailsScreen({navigation, route}) {
+function CourseDetailsScreen({ navigation, route }) {
   const [modalVisible, setModalVisible] = useState(false); //main modal show menu
   const [modalTopicView, setModalTopicView] = useState(false); //modal add topic
   const [newTopic, setNewTopic] = useState('');
   const dispatch = useDispatch();
   const courseId = route.params.courseId;
   const topics = useSelector(state => state.topics.topics);
+
   const user = useSelector(state => state.auth.user);
   const token = useSelector(state => state.auth.bearerToken);
 
@@ -49,7 +50,7 @@ function CourseDetailsScreen({navigation, route}) {
     dispatch(getTopicsByCourse(courseId, token));
   }, []);
 
-  const onFresh = () => {};
+  const onFresh = () => { };
 
   const pressButtonHandler = () => {
     setModalVisible(!modalVisible);
@@ -77,13 +78,13 @@ function CourseDetailsScreen({navigation, route}) {
   };
 
   return (
-    <View style={{flex: 1}}>
+    <View style={{ flex: 1 }}>
       {topics.length > 0 ? (
         <FlatList
           data={topics}
           keyExtractor={topic => topic.id}
           showsVerticalScrollIndicator={false}
-          renderItem={({item, index}) => (
+          renderItem={({ item, index }) => (
             <TopicCard topic={item} navigation={navigation} />
           )}
         />
@@ -107,7 +108,7 @@ function CourseDetailsScreen({navigation, route}) {
               style={styles.btnClose}>
               <Icon name="close" color={'#000000'} size={30} />
             </TouchableHighlight>
-            <View style={{width: 280}}>
+            <View style={{ width: 280 }}>
               <TextInputComponent
                 placeholder="Nhập chủ đề"
                 value={newTopic}
@@ -135,14 +136,14 @@ function CourseDetailsScreen({navigation, route}) {
           }}>
           <Drawer.Section>
             <DrawerItem
-              icon={({color, size}) => (
+              icon={({ color, size }) => (
                 <Icon name="bookmark-outline" color={color} size={size} />
               )}
               label="Chủ đề"
               onPress={clickTopicHandler}
             />
             <DrawerItem
-              icon={({color, size}) => (
+              icon={({ color, size }) => (
                 <Icon name="clipboard-outline" color={color} size={size} />
               )}
               label="Bài tập"
@@ -152,13 +153,13 @@ function CourseDetailsScreen({navigation, route}) {
               }}
             />
             <DrawerItem
-              icon={({color, size}) => (
+              icon={({ color, size }) => (
                 <Icon name="notebook-outline" color={color} size={size} />
               )}
               label="Tài liệu"
               onPress={() => {
                 setModalVisible(false);
-                navigation.navigate(CREATE_DOCUMENT_SCREEN_NAME, { courseId:  courseId})
+                navigation.navigate(CREATE_DOCUMENT_SCREEN_NAME, { courseId: courseId })
               }}
             />
           </Drawer.Section>

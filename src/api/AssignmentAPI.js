@@ -83,7 +83,7 @@ export const turnIn = async (assignmentID, files) => {
     console.log('error: ', error.message);
   }
   axios
-    .post(`${BASE_URL}assignment-submission`, data, {
+    .post(`${BASE_URL}/assignment-submission`, data, {
       headers: {
         Accept: 'application/json',
         'Content-Type': `multipart/form-data`,
