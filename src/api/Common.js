@@ -29,7 +29,6 @@ export const getAuthUser= (setUser)=>{
 export const getToken= async ()=>{ 
   try{
     let token= await AsyncStorage.getItem("@Token")
-    token= JSON.parse(token);
     return  token;
   }catch(err){
     console.log(err)

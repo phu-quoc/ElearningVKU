@@ -148,7 +148,7 @@ function CourseDetailsScreen({navigation, route}) {
               label="Bài tập"
               onPress={() => {
                 setModalVisible(false);
-                navigation.navigate(CREATE_ASSIGNMENT_SCREEN_NAME, { courseId: courseId })
+                navigation.navigate(CREATE_ASSIGNMENT_SCREEN_NAME, { courseId: courseId, topics: topics })
               }}
             />
             <DrawerItem

@@ -31,8 +31,8 @@ export default function CreateAssignmentScreen({ navigation, route }) {
   const [mode, setMode] = useState('date')
   const [show, setShow] = useState(false)
   const [datetime, setDateTime] = useState(new Date())
-  const topics = useSelector(state => state.topics.topics);
-  alert(JSON.stringify(topics));
+  const topics = route.params.topics;
+  // alert(JSON.stringify(topics));
 
   const selectTopicHandler = (value) => {
     setSelectedTopic(value)
@@ -75,13 +75,13 @@ export default function CreateAssignmentScreen({ navigation, route }) {
     setMode(currentMode)
   }
 
-  useEffect(() => {
-    // Call only when screen open or when back on screen
-    if (isFocused) {
-      // setTopics([])
-      getTopicByCourse(route.params?.courseId, setTopics)
-    }
-  }, [isFocused])
+  // useEffect(() => {
+  //   // Call only when screen open or when back on screen
+  //   if (isFocused) {
+  //     // setTopics([])
+  //     getTopicByCourse(route.params?.courseId, setTopics)
+  //   }
+  // }, [isFocused])
 
 
   return (

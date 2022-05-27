@@ -8,7 +8,7 @@ import {
   CREATE_COURSE_SCREEN_NAME,
 } from '../constants/routeNames';
 import {getUser} from '../redux/actions/authActions';
-import {getCourses} from '../redux/actions/courseActions';
+import {getCourseOfUser, getCourses} from '../redux/actions/courseActions';
 
 const HomeScreen = ({navigation}) => {
   const dispatch = useDispatch();
@@ -17,8 +17,9 @@ const HomeScreen = ({navigation}) => {
   const user = useSelector(state => state.auth.user);
 
   useEffect(() => {
-    dispatch(getCourses());
+    dispatch(getCourseOfUser(""));
     dispatch(getUser(token));
+    console.log(token);
   }, []);
 
   const pressButtonHandler = () => {
