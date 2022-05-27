@@ -23,7 +23,7 @@ export const createDocument = async (topicID, title, description, url, files) =>
   } catch (error) {
     console.log("error: ", error.message)
   }
-  axios.post(`${BASE_URL}resource`, data, {
+  axios.post(`${BASE_URL_HEROKU}resource`, data, {
     "headers": {
       'Accept': 'application/json',
       'Content-Type': `multipart/form-data`,

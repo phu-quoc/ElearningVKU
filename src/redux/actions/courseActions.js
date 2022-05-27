@@ -2,10 +2,13 @@ import axios from 'axios';
 import { axiosInstance, BASE_URL } from '../../api/axiosInstance';
 import { BASE_URL_HEROKU } from '../../api/Common';
 
+
 export const GET_COURSES = 'GET_COURSES';
 export const GET_COURSE_DETAILS = 'GET_COURSE_DETAILS';
 export const ADD_COURSES = 'ADD_COURSES';
 export const GET_COURSES_OF_USER = 'GET_COURSES_OF_USER'
+export const CREATE_COURSE = 'CREATE_COURSE'
+
 export const getCourses = () => async dispatch => {
   try {
     const response = await axiosInstance('/course');
@@ -39,6 +42,30 @@ export const getCourseOfUser = (token) => async dispatch => {
     dispatch({
       type: GET_COURSES_OF_USER,
       payload: courses,
+    })
+
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+export const createCourse = (token, categoryID, courseName) => async dispatch => {
+  try {
+    const response = await axios.post(`${BASE_URL}/course`, {
+      categoryID: categoryID,
+      courseName: courseName
+    }, {
+      "headers": {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
+      }
+    })
+
+    const course = await response.data;
+    dispatch({
+      type: CREATE_COURSE,
+      payload: course
     })
 
   } catch (error) {

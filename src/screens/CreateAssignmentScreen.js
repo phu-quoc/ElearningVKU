@@ -5,7 +5,8 @@ import {
   ScrollView,
   StyleSheet,
   TouchableOpacity,
-  Pressable
+  Pressable,
+  ToastAndroid,
 } from 'react-native';
 import TextInputComponent from '../components/TextInputComponent';
 import DropdownComponent from '../components/DropdownComponent';
@@ -57,6 +58,7 @@ export default function CreateAssignmentScreen({ navigation, route }) {
   }
 
   const onSent = () => {
+    ToastAndroid.showWithGravity("Đang tạo bài tập!", ToastAndroid.SHORT, ToastAndroid.CENTER);
     createAssignment(selectedTopic, title, description, datetime, multipleFile)
   }
 
@@ -78,7 +80,6 @@ export default function CreateAssignmentScreen({ navigation, route }) {
   useEffect(() => {
     // Call only when screen open or when back on screen
     if (isFocused) {
-      // setTopics([])
       getTopicByCourse(route.params?.courseId, setTopics)
     }
   }, [isFocused])

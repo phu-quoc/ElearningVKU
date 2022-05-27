@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { FlatList, StyleSheet, View } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { FlatList, StyleSheet, View, RefreshControl, } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import FloatingBottomButton from '../components/FloatingBottomButton';
 import { CourseCard } from '../components';
@@ -9,18 +9,23 @@ import {
 } from '../constants/routeNames';
 import { getUser } from '../redux/actions/authActions';
 import { getCourseOfUser } from '../redux/actions/courseActions';
+import { useIsFocused } from "@react-navigation/native";
 
 const HomeScreen = ({ navigation }) => {
+  const isFocused = useIsFocused();
   const dispatch = useDispatch();
   const token = useSelector(state => state.auth.bearerToken);
   const courses = useSelector(state => state.courses.courses);
   const user = useSelector(state => state.auth.user);
+  const [refreshing, setFreshing] = useState(false);
 
   useEffect(() => {
-    dispatch(getUser(token));
-    dispatch(getCourseOfUser(token))
-    console.log("token:", token);
-  }, []);
+    if(isFocused){
+      dispatch(getUser(token));
+      dispatch(getCourseOfUser(token))
+      console.log("token:", token);
+    }
+  }, [isFocused]);
 
   const pressButtonHandler = () => {
     navigation.navigate(CREATE_COURSE_SCREEN_NAME);
