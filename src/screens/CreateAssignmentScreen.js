@@ -16,6 +16,7 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 import { getTopicByCourse } from '../api/TopicAPI'
 import { useIsFocused } from "@react-navigation/native";
 import { createAssignment } from '../api/AssignmentAPI'
+import { useSelector } from 'react-redux';
 
 export default function CreateAssignmentScreen({ navigation, route }) {
   const isFocused = useIsFocused();
@@ -30,6 +31,8 @@ export default function CreateAssignmentScreen({ navigation, route }) {
   const [mode, setMode] = useState('date')
   const [show, setShow] = useState(false)
   const [datetime, setDateTime] = useState(new Date())
+  // const topics = useSelector(state => state.topics.topics);
+  // alert(JSON.stringify(topics));
 
   const selectTopicHandler = (value) => {
     setSelectedTopic(value)
@@ -75,7 +78,7 @@ export default function CreateAssignmentScreen({ navigation, route }) {
   useEffect(() => {
     // Call only when screen open or when back on screen
     if (isFocused) {
-      setTopics([])
+      // setTopics([])
       getTopicByCourse(route.params?.courseId, setTopics)
     }
   }, [isFocused])

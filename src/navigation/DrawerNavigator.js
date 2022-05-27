@@ -22,6 +22,18 @@ import AssignmentDetailScreen from '../screens/AssignmentDetailScreen';
 
 const Drawer = createDrawerNavigator();
 
+// const DrawerNavigator = () => {
+//   return (
+//     <Drawer.Navigator
+//       initialRouteName={BOTTOM_TABS_NAVIGATOR_NAME}
+//       screenOptions={{}}>
+//       <Drawer.Screen
+//         name={BOTTOM_TABS_NAVIGATOR_NAME}
+//         component={BottomTabsNavigator}
+//         options={{ headerShown: false }}
+//       />
+//     </Drawer.Navigator>
+//   );
 function DrawerNavigator() {
     return (
         <Drawer.Navigator

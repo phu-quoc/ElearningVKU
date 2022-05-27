@@ -8,20 +8,19 @@ import { Drawer } from 'react-native-paper';
 import FontAweSome5 from 'react-native-vector-icons/FontAwesome5'
 import { ASSIGNMENT_DETAIL_SCREEN_NAME } from '../constants/routeNames';
 
-export default function TopicCard(props) {
-  const [topic, setTopic] = useState(props.topic);
-  // console.log('topic', topic)
-  // console.log('resources: ', topic.resources)
 
+
+export const TopicCard = ({ topic, navigation }) => {
+  console.log('topic card', topic)
   return (
     <View style={styles.parentContainer}>
-      <Text style={styles.title}>{props.title}</Text>
+      <Text style={styles.title}>{topic.name}</Text>
       <View style={styles.childContainer}>
         <Drawer.Section>
           {topic?.resources ? topic.resources.map(resource => {
             switch (resource.resource_type) {
               case 1: // is file
-                return resource?.files.map(file =>
+                return resource?.files ? resource?.files.map(file =>
                   <DrawerItem
                     onPress={(() => Linking.openURL(`${file.file_attack_path}`))}
                     label={file.name}
@@ -29,11 +28,11 @@ export default function TopicCard(props) {
                       <FontAweSome5 name="readme" size={20} />
                     )}
                   />
-                )
+                ) :null
               case 4: //is Assignments
                 return (< DrawerItem
                   onPress={() => {
-                    props.navigation.navigate(ASSIGNMENT_DETAIL_SCREEN_NAME, { id: resource.id })
+                    navigation.navigate(ASSIGNMENT_DETAIL_SCREEN_NAME, { id: resource.id })
                   }}
                   label={resource.title}
                   icon={() => (
@@ -48,21 +47,21 @@ export default function TopicCard(props) {
           }
           {topic?.resources ? topic.resources.map(resource => {
             return resource?.url ?
-            (<DrawerItem
-              onPress={(() => Linking.openURL(`${resource.url.url}`))}
-              label={resource.url.url}
-              icon={() => (
-                <FontAweSome5 name="chrome" size={20} />
-              )}
-            />)
-            :null
-          }):null}
+              (<DrawerItem
+                onPress={(() => Linking.openURL(`${resource.url.url}`))}
+                label={resource.url.url}
+                icon={() => (
+                  <FontAweSome5 name="chrome" size={20} />
+                )}
+              />)
+              : null
+          }) : null}
 
         </Drawer.Section>
       </View>
     </View>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   title: {
@@ -71,13 +70,12 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   parentContainer: {
-    backgroundColor: "#fff",
+    backgroundColor: '#fff',
     padding: 10,
     margin: 10,
-  }
-  ,
+  },
   childContainer: {
     padding: 15,
     marginLeft: 10,
-  }
+  },
 })

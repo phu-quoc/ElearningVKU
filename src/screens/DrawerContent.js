@@ -25,102 +25,65 @@ import auth from '@react-native-firebase/auth';
 import { loginHandler, logoutHandler } from '../api/AuthAPI';
 import { getAuthUser } from '../api/Common';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useDispatch, useSelector } from 'react-redux';
+import { logout } from '../redux/actions/authActions';
 
 export default function DrawerContent(props) {
-  const [isLoggined, setIsLoggined] = useState(false);
-  const [user, setUser] = useState({ name: "", email: "" });
-
+  const dispatch = useDispatch();
+  const token = useSelector(state => state.auth.bearerToken);
+  const user = useSelector(state => state.auth.user);
+  
   useEffect(() => {
     GoogleSignin.configure({
       webClientId: '1025591701711-p3njvopj68jsdnp8np4u46dte3g0o9ch.apps.googleusercontent.com',
       offlineAccess: true,
     })
-  }, []);
-  const login = async () => {
-    try {
-      await GoogleSignin.hasPlayServices();
-      const { idToken } = await GoogleSignin.signIn();
-      // Create a Google credential with the token
-      const googleCredential = auth.GoogleAuthProvider.credential(idToken);
-      // Sign-in the user with the credential
-      const userAuth = auth().signInWithCredential(googleCredential);
-      userAuth.then((data) => {
-        console.log("Google response:", data);
-        setUser({
-          name: data.additionalUserInfo.profile.name,
-          email: data.additionalUserInfo.profile.email,
-        })
-        console.log(idToken);
-        loginHandler(idToken, user, setUser);
-        console.log("Drawer content:", user);
-        setIsLoggined(true);
-      })
-        .catch((error) => {
-          console.log(error.message);
-        })
-    } catch (error) {
-      console.log(error.message)
-    }
-  }
-  const logout = async () => {
-    try {
-      await GoogleSignin.signOut();
-      logoutHandler();
-      await AsyncStorage.removeItem("USER");
-      setIsLoggined(false);
-    } catch (error) {
-      console.error(error);
-    }
+  }, []); 
+ 
+  const logoutHandler = () => {
+    dispatch(logout(token));
   };
 
   return (
     <View style={{ flex: 1 }}>
       <DrawerContentScrollView {...props}>
         <View style={styles.drawerContent}>
-          {isLoggined ?
             <View style={styles.userInfoSection}>
               <View style={{ flexDirection: 'row', marginTop: 15 }}>
                 <Avatar.Image
-                  source={user?.data?.image_feature_path ? { uri: user.data.image_feature_path } : require('../assets/icons/profile.png')}
+                  source={user.image_feature_path ? { uri: user.image_feature_path } : require('../assets/icons/profile.png')}
                   size={50}
                 />
                 <View style={{ marginLeft: 15, flexDirection: 'column' }}>
-                  <Title style={styles.title}>{user.name}</Title>
+                  <Title style={styles.title}>{user.first_name+' '+user.last_name}</Title>
                   <Caption style={styles.caption}>{user.email}</Caption>
                 </View>
               </View>
 
-              {user?.data?.user_type == 1 ?
+              {user.user_type == 1 ?
                 <View style={styles.row}>
                   <View style={styles.section}>
                     <Caption style={styles.caption}>Lớp: </Caption>
-                    <Paragraph style={[styles.paragraph, styles.caption]}> {user?.data?.student?.activity_class?.name}</Paragraph>
+                    <Paragraph style={[styles.paragraph, styles.caption]}> {user?.student?.activity_class?.name}</Paragraph>
                   </View>
                   <View style={styles.section}>
                     <Caption style={styles.caption}>Khoa: </Caption>
-                    <Paragraph style={[styles.paragraph, styles.caption]}>{user?.data?.student?.activity_class?.department?.name}</Paragraph>
+                    <Paragraph style={[styles.paragraph, styles.caption]}>{user?.student?.activity_class?.department?.name}</Paragraph>
                   </View>
                 </View>
                 :
                 <View style={styles.row}>
                   <View style={styles.section}>
-                    <Paragraph style={[styles.paragraph, styles.caption]}> {user?.data?.lecturer?.degree?.name}</Paragraph>
+                    <Paragraph style={[styles.paragraph, styles.caption]}> {user?.lecturer?.degree?.name}</Paragraph>
                   </View>
                   <View style={styles.section}>
                     <Caption style={styles.caption}>Khoa: </Caption>
-                    <Paragraph style={[styles.paragraph, styles.caption]}>{user?.data?.lecturer?.department?.name}</Paragraph>
+                    <Paragraph style={[styles.paragraph, styles.caption]}>{user?.lecturer?.department?.name}</Paragraph>
                   </View>
                 </View>
               }
             </View>
-            : <GoogleSigninButton
-              style={{ width: 280, height: 55 }}
-              text="Login with google"
-              size={GoogleSigninButton.Size.Wide}
-              color={GoogleSigninButton.Color.Dark}
-              onPress={login}
-            />
-          }
+        
 
           <Drawer.Section style={styles.drawerSection}>
             <DrawerItem
@@ -142,7 +105,7 @@ export default function DrawerContent(props) {
                   size={size}
                 />
               )}
-              label="Notificattion"
+              label="Notification"
               onPress={() => { props.navigation.navigate(NOTIFICATIONS_SCREEN_NAME) }}
             />
             <DrawerItem
@@ -230,7 +193,7 @@ export default function DrawerContent(props) {
           </Drawer.Section>
         </View>
       </DrawerContentScrollView>
-      {isLoggined ?
+  
         <Drawer.Section style={styles.bottomDrawerSection}>
           <DrawerItem
             icon={({ color, size }) => (
@@ -241,11 +204,9 @@ export default function DrawerContent(props) {
               />
             )}
             label="Sign Out"
-            onPress={logout}
+            onPress={logoutHandler}
           />
         </Drawer.Section>
-        : null
-      }
     </View>
   );
 }

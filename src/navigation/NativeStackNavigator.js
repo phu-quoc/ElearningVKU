@@ -1,6 +1,5 @@
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
 
 //Screens
 import TopTabsNavigator from '../navigation/TopTabsNavigator';

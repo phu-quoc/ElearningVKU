@@ -9,7 +9,7 @@ import DrawerNavigator from './DrawerNavigator';
 
 const NotificationsStack = createNativeStackNavigator();
 
-function NotificationNativeStackNavigator() {
+const NotificationNativeStackNavigator = () => {
   return (
     <NotificationsStack.Navigator
       >
