@@ -46,6 +46,7 @@ function CourseDetailsScreen({ navigation, route }) {
   }, [])
   const onRefresh = () => {
     getAuthUser(setUser)
+    getCourse(course?.key ? course.key : course.id, setCourse, setTopics)
   }
 
   return (
@@ -64,6 +65,7 @@ function CourseDetailsScreen({ navigation, route }) {
             topic={topics[index]} navigation={navigation}
           />
         )}
+        keyExtractor={item => item.id}
       />
 
       {user?.data?.user_type == 2 ? <FloatingBottomButton icon="plus" onPress={pressButtonHandler} /> : null}

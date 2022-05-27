@@ -4,19 +4,23 @@ import {
   View,
   ScrollView,
   StyleSheet,
-  TouchableOpacity
+  TouchableOpacity,
+  Pressable,
+  Linking,
 } from 'react-native';
 import HeaderInsertFileComponent from '../components/HeaderInsertFileComponent';
 import DocumentPicker from 'react-native-document-picker';
 import FileViewer from "react-native-file-viewer";
 import RNFS from "react-native-fs";
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-
-import { getAssignment, turnIn } from '../api/AssignmentAPI'
+import { useIsFocused } from "@react-navigation/native";
+import { getAssignment, turnIn, getSubmission } from '../api/AssignmentAPI'
 
 export default function AssignmentDetailScreen({ navigation, route }) {
+  const isFocused = useIsFocused();
   const [assignment, setAssignment] = useState()
   const [multipleFile, setMultipleFile] = useState([]);
+  const [submission, setSubmission] = useState();
 
   const onSelectFiles = async () => {
     try {
@@ -39,9 +43,13 @@ export default function AssignmentDetailScreen({ navigation, route }) {
   const onSent = () => {
     turnIn(route.params?.id, multipleFile)
   }
+
   useEffect(() => {
-    getAssignment(route.params?.id, setAssignment)
-  }, [])
+    if (isFocused) {
+      getAssignment(route.params?.id, setAssignment)
+      getSubmission(route.params?.id, setSubmission)
+    }
+  }, [isFocused])
   return (
     <View style={{ flex: 1 }}>
       <HeaderInsertFileComponent title="Bài tập" navigation={navigation}
@@ -49,14 +57,26 @@ export default function AssignmentDetailScreen({ navigation, route }) {
       />
       <View style={styles.container}>
         <Text style={styles.title}>{assignment?.title}</Text>
-        <Text style={styles.deadline}>Thời hạn: {assignment?.assignment?.deadline}</Text>
+        <Text style={styles.deadline}>
+          <Icon name="clock-outline" size={18} /> {assignment?.assignment?.deadline}
+        </Text>
         <Text style={styles.title}>Mô tả bài tập:</Text>
         <Text style={styles.description}>{assignment?.description}</Text>
         <Text style={styles.title}>Tệp đính kèm:</Text>
-        {/* {assignment?.assignment?.assignment_file_attacks.map(item => {
-
-        })} */}
-
+        {assignment?.assignment?.assignment_file_attacks.map(item => (
+          <Pressable onPress={() => Linking.openURL(`${item.file_attack_path}`)}>
+            <Text>{item.name}</Text>
+          </Pressable>
+        ))}
+        {submission ?
+          <Text style={styles.title}>Tệp đã nộp:</Text> :
+          <Text style={styles.title}>Chưa nộp bài</Text>
+        }
+        {submission ? submission?.assignment_submission_file_attacks.map(item => (
+          <Pressable onPress={() => Linking.openURL(`${item.file_attack_path}`)}>
+            <Text>{item.name}</Text>
+          </Pressable>
+        )) : null}
         {multipleFile.length != 0 ?
           <Text style={styles.title}>Đã chọn {multipleFile.length} files: </Text>
           : null

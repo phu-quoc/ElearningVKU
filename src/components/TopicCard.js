@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { View, StyleSheet, Text } from 'react-native';
+import { View, StyleSheet, Text, Linking } from 'react-native';
 import {
   DrawerContentScrollView,
   DrawerItem
@@ -18,18 +18,46 @@ export default function TopicCard(props) {
       <Text style={styles.title}>{props.title}</Text>
       <View style={styles.childContainer}>
         <Drawer.Section>
-          {topic?.resources ? topic.resources.map(resource => (
-            < DrawerItem 
-            onPress = {()=>{
-            props.navigation.navigate(ASSIGNMENT_DETAIL_SCREEN_NAME,{ id: resource.id })
-          }}
-          label={resource.title}
-          icon ={() => (
-            <FontAweSome5 name="book" size={30} />
-          )}
-          />
-        )):null}
-        {/* {topic?.resources ? topic.resources.map(resource =>console.log('resource: ',resource.id)):null} */}
+          {topic?.resources ? topic.resources.map(resource => {
+            switch (resource.resource_type) {
+              case 1: // is file
+                return resource?.files.map(file =>
+                  <DrawerItem
+                    onPress={(() => Linking.openURL(`${file.file_attack_path}`))}
+                    label={file.name}
+                    icon={() => (
+                      <FontAweSome5 name="readme" size={20} />
+                    )}
+                  />
+                )
+              case 4: //is Assignments
+                return (< DrawerItem
+                  onPress={() => {
+                    props.navigation.navigate(ASSIGNMENT_DETAIL_SCREEN_NAME, { id: resource.id })
+                  }}
+                  label={resource.title}
+                  icon={() => (
+                    <FontAweSome5 name="book" size={20} />
+                  )}
+                />)
+              default:
+                break;
+            }
+            //  ()
+          }) : null
+          }
+          {topic?.resources ? topic.resources.map(resource => {
+            return resource?.url ?
+            (<DrawerItem
+              onPress={(() => Linking.openURL(`${resource.url.url}`))}
+              label={resource.url.url}
+              icon={() => (
+                <FontAweSome5 name="chrome" size={20} />
+              )}
+            />)
+            :null
+          }):null}
+
         </Drawer.Section>
       </View>
     </View>

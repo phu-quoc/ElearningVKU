@@ -82,3 +82,20 @@ export const turnIn = async (assignmentID, files) => {
     console.log("error: ", error.message)
   })
 }
+
+
+export const getSubmission = async (assignment_id, setSubmisson) => {
+  // get assignment submission
+  const token = await getToken();
+  axios.get(`${BASE_URL}assignment-submission/null?assignment_id=${assignment_id}`, {
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`,
+    },
+  }).then(response => {
+    setSubmisson(response.data)
+  }).catch(error => {
+    console.error("error: ", error.message)
+  })
+}
