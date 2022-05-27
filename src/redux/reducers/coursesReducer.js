@@ -1,8 +1,7 @@
-import {ADD_COURSES, GET_COURSES, GET_COURSE_DETAILS} from '../actions/courseActions';
+import {ADD_COURSES, GET_COURSES} from '../actions/courseActions';
 
 const initialState = {
   courses: [],
-  courseDetails: [],
 };
 const coursesReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -10,12 +9,6 @@ const coursesReducer = (state = initialState, action) => {
       return {
         ...state,
         courses: action.payload,
-      };
-    case GET_COURSE_DETAILS:
-      const courseDetails = state.courseDetails
-      return {
-        ...state,
-        courseDetails: courseDetails.concat(action.payload),
       };
     default:
       return state;

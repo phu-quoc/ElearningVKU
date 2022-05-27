@@ -32,10 +32,6 @@ export default function DrawerContent(props) {
   const dispatch = useDispatch();
   const token = useSelector(state => state.auth.bearerToken);
   const user = useSelector(state => state.auth.user);
-  // const isAuth = useSelector(state => state.auth.isAuth);
-  // console.log(JSON.stringify(token));
-  // const [isLoggined, setIsLoggined] = useState(false);
-  // const [user, setUser] = useState({ name: "", email: "" });
   
   useEffect(() => {
     GoogleSignin.configure({
@@ -43,32 +39,7 @@ export default function DrawerContent(props) {
       offlineAccess: true,
     })
   }, []); 
-  // const login = async () => {
-  //   try {
-  //     await GoogleSignin.hasPlayServices();
-  //     const { idToken } = await GoogleSignin.signIn();
-  //     // Create a Google credential with the token
-  //     const googleCredential = auth.GoogleAuthProvider.credential(idToken);
-  //     // Sign-in the user with the credential
-  //     const userAuth = auth().signInWithCredential(googleCredential);
-  //     userAuth.then((data) => {
-  //       console.log("Google response:", data);
-  //       setUser({
-  //         name: data.additionalUserInfo.profile.name,
-  //         email: data.additionalUserInfo.profile.email,
-  //       })
-  //       console.log(idToken);
-  //       loginHandler(idToken, user, setUser);
-  //       console.log("Drawer content:", user);
-  //       setIsLoggined(true);
-  //     })
-  //       .catch((error) => {
-  //         console.log(error.message);
-  //       })
-  //   } catch (error) {
-  //     console.log(error.message)
-  //   }
-  // }
+ 
   const logoutHandler = () => {
     dispatch(logout(token));
   };
@@ -134,7 +105,7 @@ export default function DrawerContent(props) {
                   size={size}
                 />
               )}
-              label="Notificattion"
+              label="Notification"
               onPress={() => { props.navigation.navigate(NOTIFICATIONS_SCREEN_NAME) }}
             />
             <DrawerItem

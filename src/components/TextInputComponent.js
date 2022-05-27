@@ -13,6 +13,8 @@ export default function TextInputComponent(props) {
         value={props.value}
         onChangeText={props.onChangeText}
         placeholder={props.placeholder}
+        multiline={props.multiline}
+        numberOfLines={props?.numberOfLines ?props.numberOfLines: 1}
       >
       </TextInput>
     </View>
@@ -31,5 +33,6 @@ const styles = StyleSheet.create({
       padding: 15,
       color: '#000000',
       fontSize: 18,
+      textAlignVertical: 'top' 
   },
 })

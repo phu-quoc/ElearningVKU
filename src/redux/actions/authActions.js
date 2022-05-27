@@ -2,6 +2,7 @@ import {GoogleSignin} from '@react-native-google-signin/google-signin';
 import auth from '@react-native-firebase/auth';
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { BASE_URL } from '../../api/axiosInstance';
 // import {getUser} from '../../api/Common';
 export const LOGIN = 'LOGIN';
 export const LOGOUT = 'LOGOUT';
@@ -61,7 +62,7 @@ export const login = () => async dispatch => {
 export const getUser = token => async dispatch => {
     try {
         const response = await axios.get(
-            'https://elearningvku-server.herokuapp.com/api/user',
+            `${BASE_URL}/user`,
             {
               headers: {
                 Accept: 'application/json',
@@ -89,7 +90,7 @@ export const autoLogin = token => dispatch => {
 
 export const logout = token => async dispatch => {
   try {
-    await axios.get(`https://elearningvku-server.herokuapp.com/api/logout`, {
+    await axios.get(`${BASE_URL}/logout`, {
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',

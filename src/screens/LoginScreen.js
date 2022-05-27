@@ -1,53 +1,28 @@
 import React, { useEffect } from 'react';
-import {Text, View, Image, StyleSheet, Dimensions} from 'react-native';
+import {View, Image, StyleSheet} from 'react-native';
 import {
   GoogleSignin,
   GoogleSigninButton,
 } from '@react-native-google-signin/google-signin';
 import auth from '@react-native-firebase/auth';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { WINDOW_HEIGHT, WINDOW_WIDTH } from '../constants/headerDimensions';
-import { useDispatch, useSelector } from 'react-redux';
+import { WINDOW_WIDTH } from '../constants/headerDimensions';
+import { useDispatch } from 'react-redux';
 import {login} from  '../redux/actions/authActions';
+import { WEB_CLIENT_ID } from '../constants/googleWebClientId';
 
 function LoginScreen() {
   const dispatch = useDispatch();
   
   useEffect(() => {
     GoogleSignin.configure({
-      webClientId: '1025591701711-p3njvopj68jsdnp8np4u46dte3g0o9ch.apps.googleusercontent.com',
+      webClientId: WEB_CLIENT_ID,
       offlineAccess: true,
     })
   }, []);
   const loginHandler = () => {
     dispatch(login());
   }
-  // const login = async () => {
-  //   try {
-  //     await GoogleSignin.hasPlayServices();
-  //     const { idToken } = await GoogleSignin.signIn();
-  //     // Create a Google credential with the token
-  //     const googleCredential = auth .GoogleAuthProvider.credential(idToken);
-  //     // Sign-in the user with the credential
-  //     const userAuth = auth().signInWithCredential(googleCredential);
-  //     userAuth.then((data) => {
-  //       console.log("Google response:", data);
-  //       setUser({
-  //         name: data.additionalUserInfo.profile.name,
-  //         email: data.additionalUserInfo.profile.email,
-  //       })
-  //       console.log(idToken);
-  //       loginHandler(idToken, user, setUser);
-  //       console.log("Drawer content:", user);
-  //       setIsLoggined(true);
-  //     })
-  //       .catch((error) => {
-  //         console.log(error.message);
-  //       })
-  //   } catch (error) {
-  //     console.log(error.message)
-  //   }
-  // }
   return (
     <View style={styles.container}>
       <Image

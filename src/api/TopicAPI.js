@@ -24,3 +24,17 @@ export const addTopic = async (name, course_id,topics, setTopics) => {
 
   })
 }
+
+export const getTopicByCourse =(courseID, setTopics)=>{
+  axios.get(`${BASE_URL}get-topics-by-course?courseID=${courseID}`, {
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+    },
+  }).then(response => {
+    console.log(response.data)
+    setTopics(response.data)
+  }).catch(error => {
+    console.error(error.message);
+  })
+}
