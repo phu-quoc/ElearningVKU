@@ -7,11 +7,10 @@ import {
   TouchableOpacity,
   Pressable,
   Linking,
+  ToastAndroid
 } from 'react-native';
 import HeaderInsertFileComponent from '../components/HeaderInsertFileComponent';
 import DocumentPicker from 'react-native-document-picker';
-import FileViewer from "react-native-file-viewer";
-import RNFS from "react-native-fs";
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useIsFocused } from "@react-navigation/native";
 import { getAssignment, turnIn, getSubmission } from '../api/AssignmentAPI'
@@ -41,6 +40,7 @@ export default function AssignmentDetailScreen({ navigation, route }) {
   }
 
   const onSent = () => {
+    ToastAndroid.showWithGravity("Đang nộp bài tập!", ToastAndroid.SHORT, ToastAndroid.CENTER);
     turnIn(route.params?.id, multipleFile)
   }
 

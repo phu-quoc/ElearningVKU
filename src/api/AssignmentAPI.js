@@ -55,6 +55,7 @@ export const getAssignment = (id, setAssignment) => {
 
 export const turnIn = async (assignmentID, files) => {
   console.log(assignmentID)
+  console.log(files)
   const token = await getToken();
   const data = new FormData();
   data.append('assignmentID', assignmentID)
@@ -68,9 +69,9 @@ export const turnIn = async (assignmentID, files) => {
       data.append('files[]', file)
     })
   } catch (error) {
-    console.log("error: ", error.message)
+    console.log("error: 1 ", error.message)
   }
-  axios.post(`${BASE_URL}assignment-submission`, data, {
+  axios.post(`${BASE_URL_HEROKU}assignment-submission`, data, {
     "headers": {
       'Accept': 'application/json',
       'Content-Type': `multipart/form-data`,
@@ -80,7 +81,7 @@ export const turnIn = async (assignmentID, files) => {
   ).then(response => {
     ToastAndroid.showWithGravity("Đã nộp bài tập!", ToastAndroid.SHORT, ToastAndroid.CENTER);
   }).catch(error => {
-    console.log("error: ", error.message)
+    console.log("error: 2", error.message)
   })
 }
 
@@ -88,7 +89,7 @@ export const turnIn = async (assignmentID, files) => {
 export const getSubmission = async (assignment_id, setSubmisson) => {
   // get assignment submission
   const token = await getToken();
-  axios.get(`${BASE_URL}assignment-submission/null?assignment_id=${assignment_id}`, {
+  axios.get(`${BASE_URL_HEROKU}assignment-submission/null?assignment_id=${assignment_id}`, {
     headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json',
