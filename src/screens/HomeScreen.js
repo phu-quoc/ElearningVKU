@@ -20,6 +20,8 @@ const HomeScreen = ({ navigation }) => {
     dispatch(getUser(token));
     dispatch(getCourseOfUser(token))
     console.log("token:", token);
+    console.log("user:", user);
+    console.log("courses:", courses);
   }, []);
 
   const pressButtonHandler = () => {
@@ -28,7 +30,8 @@ const HomeScreen = ({ navigation }) => {
 
   function renderCourses() {
     return (
-      <FlatList
+      
+        <FlatList
         data={courses}
         showsVerticalScrollIndicator={false}
         renderItem={({ item, index }) => (
@@ -42,11 +45,13 @@ const HomeScreen = ({ navigation }) => {
           />
         )}
       />
+     
+      
     );
   }
   return (
     <View style={styles.container}>
-      {renderCourses()}
+      {courses.length > 0 && renderCourses()}
       {user.user_type == 2 && (
         <FloatingBottomButton icon="plus" onPress={pressButtonHandler} />
       )}

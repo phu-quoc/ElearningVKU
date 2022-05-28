@@ -27,6 +27,7 @@ export const createAssignment = async (
     });
   } catch (error) {
     console.log('error: ', error.message);
+    console.log('files[]: ', data);
   }
 
   axios
@@ -51,7 +52,7 @@ export const createAssignment = async (
 
 export const getAssignment = (id, setAssignment) => {
   axios
-    .get(`${BASE_URL}assignment/${id}`, {
+    .get(`${BASE_URL}/assignment/${id}`, {
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
@@ -80,7 +81,8 @@ export const turnIn = async (assignmentID, files) => {
       data.append('files[]', file);
     });
   } catch (error) {
-    console.log('error: ', error.message);
+    console.log('files error: ', error.message);
+    console.log('files[]: ', data);
   }
   axios
     .post(`${BASE_URL}/assignment-submission`, data, {
@@ -92,7 +94,7 @@ export const turnIn = async (assignmentID, files) => {
     })
     .then(response => {
       ToastAndroid.showWithGravity(
-        'Đã nộp bài tập!',
+        response.data.message,
         ToastAndroid.SHORT,
         ToastAndroid.CENTER,
       );
@@ -101,3 +103,19 @@ export const turnIn = async (assignmentID, files) => {
       console.log('error: ', error.message);
     });
 };
+
+export const getSubmission = async (assignment_id, setSubmisson) => {
+  // get assignment submission
+  const token = await getToken();
+  axios.get(`${BASE_URL}/assignment-submission/null?assignment_id=${assignment_id}`, {
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`,
+    },
+  }).then(response => {
+    setSubmisson(response.data)
+  }).catch(error => {
+    console.error("error: ", error.message)
+  })
+}
