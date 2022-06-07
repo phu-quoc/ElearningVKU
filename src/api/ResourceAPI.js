@@ -36,3 +36,24 @@ export const createDocument = async (topicID, title, description, url, files) =>
     console.log("error: ", error.message)
   })
 }
+
+
+export const createLink = async (topicID, title, url) => {
+  const token = await getToken();
+  axios.post(`${BASE_URL}url`, {
+    topicID: topicID,
+    title: title,
+    url: url,
+  }, {
+    "headers": {
+      'Accept': 'application/json',
+      'Content-Type': `multipart/form-data`,
+      'Authorization': `Bearer ${token}`,
+    }
+  }
+  ).then(response => {
+    ToastAndroid.showWithGravity("Lưu thành công!", ToastAndroid.SHORT, ToastAndroid.CENTER);
+  }).catch(error => {
+    console.log("error: ", error.message)
+  })
+}

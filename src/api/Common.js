@@ -2,7 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 // dùng ngrok tạo host tới port 8000
 // ngrok httop 8000
-export const BASE_URL = "https://5dc1-59-153-229-108.ap.ngrok.io" + "/api/"
+export const BASE_URL = "https://3a30-42-115-155-223.ap.ngrok.io" + "/api/"
 export const BASE_URL_HEROKU = 'https://elearningvku-server.herokuapp.com/api/';
 
 // export const BASE_URL = "" 

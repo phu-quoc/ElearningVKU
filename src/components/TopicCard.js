@@ -28,7 +28,20 @@ export const TopicCard = ({ topic, navigation }) => {
                       <FontAweSome5 name="readme" size={20} />
                     )}
                   />
-                ) :null
+                ) : null
+              case 2:
+                return null;
+                return (
+                  <DrawerItem
+                    onPress={(() => Linking.openURL(`${resource?.url?.url}`))}
+                    label={resource.title}
+                    icon={() => (
+                      <FontAweSome5 name="chrome" size={20} />
+                    )}
+                  />
+                )
+
+
               case 4: //is Assignments
                 return (< DrawerItem
                   onPress={() => {

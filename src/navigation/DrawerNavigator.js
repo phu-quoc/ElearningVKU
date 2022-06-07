@@ -9,7 +9,8 @@ import {
     PROFILE_SCREEN_NAME,
     CREATE_ASSIGNMENT_SCREEN_NAME,
     CREATE_DOCUMENT_SCREEN_NAME, 
-    ASSIGNMENT_DETAIL_SCREEN_NAME
+    ASSIGNMENT_DETAIL_SCREEN_NAME,
+    CREATE_LINK_SCREEN_NAME,
 } from '../constants/routeNames';
 import CourseDetailsScreen from '../screens/CourseDetailsScreen';
 import BottomTabsNavigator from './BottomTabsNavigator';
@@ -19,21 +20,10 @@ import CreateCourseScreen from '../screens/CreateCourseScreen';
 import CreateAssignmentScreen from '../screens/CreateAssignmentScreen';
 import CreateDocumentScreen from '../screens/CreateDocumentScreen';
 import AssignmentDetailScreen from '../screens/AssignmentDetailScreen';
+import CreateLinkScreen from '../screens/CreateLinkScreen';
 
 const Drawer = createDrawerNavigator();
 
-// const DrawerNavigator = () => {
-//   return (
-//     <Drawer.Navigator
-//       initialRouteName={BOTTOM_TABS_NAVIGATOR_NAME}
-//       screenOptions={{}}>
-//       <Drawer.Screen
-//         name={BOTTOM_TABS_NAVIGATOR_NAME}
-//         component={BottomTabsNavigator}
-//         options={{ headerShown: false }}
-//       />
-//     </Drawer.Navigator>
-//   );
 function DrawerNavigator() {
     return (
         <Drawer.Navigator
@@ -48,6 +38,7 @@ function DrawerNavigator() {
             <Drawer.Screen name={CREATE_ASSIGNMENT_SCREEN_NAME} component={CreateAssignmentScreen} options={{ headerShown: false }} />
             <Drawer.Screen name={CREATE_DOCUMENT_SCREEN_NAME} component={CreateDocumentScreen} options={{ headerShown: false }} />
             <Drawer.Screen name={ASSIGNMENT_DETAIL_SCREEN_NAME} component={AssignmentDetailScreen} options={{ headerShown: false }} />
+            <Drawer.Screen name={CREATE_LINK_SCREEN_NAME} component={CreateLinkScreen} options={{ headerShown: false }} />
         </Drawer.Navigator>
     );
 }

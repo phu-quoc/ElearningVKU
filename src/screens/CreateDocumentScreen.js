@@ -69,7 +69,7 @@ export default function CreateDocumentScreen({ navigation, route }) {
         onSelect={selectTopicHandler}
       />
       <TextInputComponent value={title} onChangeText={setTitle} placeholder="Tiêu đề" />
-      <TextInputComponent value={url} onChangeText={setUrl} placeholder="Link tham khảo" />
+      {/* <TextInputComponent value={url} onChangeText={setUrl} placeholder="Link tham khảo" /> */}
       <TextInputComponent onChangeText={setDescription}
         placeholder="Mô tả tài liệu" value={description}
         multiline={true} numberOfLines={5}

@@ -30,11 +30,13 @@ import { TopicCard } from '../components/TopicCard';
 import {
   CREATE_ASSIGNMENT_SCREEN_NAME,
   CREATE_DOCUMENT_SCREEN_NAME,
+  CREATE_LINK_SCREEN_NAME
 } from '../constants/routeNames';
 import { DrawerItem } from '@react-navigation/drawer';
 import { Drawer } from 'react-native-paper';
 import { addTopic, getTopicsByCourse } from '../redux/actions/topicActions';
 import { useIsFocused } from "@react-navigation/native";
+import FontAweSome5 from 'react-native-vector-icons/FontAwesome5'
 
 function CourseDetailsScreen({ navigation, route }) {
   const isFocused = useIsFocused();
@@ -164,6 +166,16 @@ function CourseDetailsScreen({ navigation, route }) {
               onPress={() => {
                 setModalVisible(false);
                 navigation.navigate(CREATE_DOCUMENT_SCREEN_NAME, { courseId: courseId })
+              }}
+            />
+            <DrawerItem
+              icon={() => (
+                <FontAweSome5 name="chrome" size={20} />
+              )}
+              label="Link"
+              onPress={() => {
+                setModalVisible(false);
+                navigation.navigate(CREATE_LINK_SCREEN_NAME, { courseId: courseId })
               }}
             />
           </Drawer.Section>
