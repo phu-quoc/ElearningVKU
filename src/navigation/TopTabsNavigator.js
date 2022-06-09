@@ -1,5 +1,6 @@
 import React from 'react';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
+import {HomeHeader} from '../components/HomeHeader';
 
 //Screens
 import AssignmentsScreen from '../screens/AssignmentsScreen';
@@ -14,13 +15,16 @@ const Tab = createMaterialTopTabNavigator();
 
 function TopTabNavigation() {
   return (
-    <Tab.Navigator>
-      <Tab.Screen name={HOME_SCREEN_NAME} component={HomeScreen} />
-      <Tab.Screen
-        name={ASSIGNMENTS_SCREEN_NAME}
-        component={AssignmentsScreen}
-      />
-    </Tab.Navigator>
+    <>
+      <HomeHeader />
+      <Tab.Navigator>
+        <Tab.Screen name={HOME_SCREEN_NAME} component={HomeScreen} />
+        <Tab.Screen
+          name={ASSIGNMENTS_SCREEN_NAME}
+          component={AssignmentsScreen}
+        />
+      </Tab.Navigator>
+    </>
   );
 }
 

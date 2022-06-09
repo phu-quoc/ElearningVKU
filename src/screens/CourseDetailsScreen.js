@@ -20,11 +20,13 @@ import {
   CREATE_ASSIGNMENT_SCREEN_NAME,
   CREATE_DOCUMENT_SCREEN_NAME,
 } from '../constants/routeNames';
-import {DrawerItem} from '@react-navigation/drawer';
-import {Drawer} from 'react-native-paper';
-import {addTopic, getTopicsByCourse} from '../redux/actions/topicActions';
+import { DrawerItem } from '@react-navigation/drawer';
+import { Drawer } from 'react-native-paper';
+import { addTopic, getTopicsByCourse } from '../redux/actions/topicActions';
+import { useIsFocused } from "@react-navigation/native";
 
-function CourseDetailsScreen({navigation, route}) {
+function CourseDetailsScreen({ navigation, route }) {
+  const isFocused = useIsFocused();
   const [modalVisible, setModalVisible] = useState(false); //main modal show menu
   const [modalTopicView, setModalTopicView] = useState(false); //modal add topic
   const [newTopic, setNewTopic] = useState('');
@@ -36,18 +38,20 @@ function CourseDetailsScreen({navigation, route}) {
   const token = useSelector(state => state.auth.bearerToken);
 
   useEffect(() => {
-    dispatch(getTopicsByCourse(courseId, token));
-  }, []);
+    if(isFocused){
+      dispatch(getTopicsByCourse(courseId, token));
+    }
+  }, [isFocused]);
 
-  const getTopicsByCourseHandler = () => {
-    dispatch(getTopicsByCourse(courseId, token));
-    setIsFetching(false);
-  };
+  // const getTopicsByCourseHandler = () => {
+  //   dispatch(getTopicsByCourse(courseId, token));
+  //   setIsFetching(false);
+  // };
 
-  const onRefresh = () => {
-    setIsFetching(true);
-    getTopicsByCourseHandler();
-  };
+  // const onRefresh = () => {
+  //   setIsFetching(true);
+  //   getTopicsByCourseHandler();
+  // };
 
   const pressButtonHandler = () => {
     setModalVisible(!modalVisible);
@@ -81,10 +85,10 @@ function CourseDetailsScreen({navigation, route}) {
           data={topics}
           keyExtractor={topic => topic.id}
           refreshing={isFetching}
-          onRefresh={onRefresh}
+          // onRefresh={onRefresh}
           showsVerticalScrollIndicator={false}
           renderItem={({item, index}) => (
-            <TopicCard topic={item} navigation={navigation} />
+            <TopicCard id={index} topic={item} navigation={navigation}/>
           )}
         />
       ) : null}

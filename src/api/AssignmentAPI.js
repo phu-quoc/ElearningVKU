@@ -68,6 +68,8 @@ export const getAssignment = (id, setAssignment) => {
 };
 
 export const turnIn = async (assignmentID, files) => {
+  console.log(assignmentID)
+  console.log(files)
   const token = await getToken();
   const data = new FormData();
   data.append('assignmentID', assignmentID);

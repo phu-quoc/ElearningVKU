@@ -2,6 +2,7 @@ import axios from 'axios';
 import {axiosInstance, BASE_URL} from '../../api/axiosInstance';
 import {BASE_URL_HEROKU} from '../../api/Common';
 
+
 export const GET_COURSES = 'GET_COURSES';
 export const GET_COURSE_DETAILS = 'GET_COURSE_DETAILS';
 export const ADD_COURSES = 'ADD_COURSES';

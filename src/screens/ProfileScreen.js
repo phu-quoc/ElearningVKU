@@ -16,11 +16,14 @@ import ProfileItem from '../components/ProfileItem';
 import ProfileSettingScreen from '../screens/ProfileSettingScreen'
 import { getAuthUser } from '../api/Common';
 import { getAllDepartments } from '../api/ProfileAPI';
+import { useDispatch, useSelector } from 'react-redux';
 
 function ProfileScreen({ navigation, route }) {
   const [pressed, setPressed] = useState(false);
   const [department, setDepartment] = useState("");
-  const [user, setUser] = useState(route.params?.user);
+  const user = useSelector(state => state.auth.user);
+
+  // const [user, setUser] = useState(route.params?.user);
   const btEditToggle = async () => {
     setPressed(!pressed);
     console.log("department: ", department);
@@ -28,11 +31,11 @@ function ProfileScreen({ navigation, route }) {
   const [refreshing, setFreshing] = useState(false);
   const onRefresh = () => {
     setFreshing(true);
-    getAuthUser(setUser);
     setFreshing(false);
     console.log(user)
   }
   useEffect(()=>{ 
+    console.log('user', user)
     getAllDepartments(setDepartment)
   }, [])
 
@@ -56,26 +59,26 @@ function ProfileScreen({ navigation, route }) {
           </TouchableHighlight>
           <View style={styles.userInfoSection}>
             <Avatar.Image
-              source={user?.data?.image_feature_path ? { uri: user.data?.image_feature_path } : require('../assets/icons/profile.png')}
+              source={user?.image_feature_path ? { uri: user.image_feature_path } : require('../assets/icons/profile.png')}
               size={65}
             />
-            <Text style={styles.title}>{`${user?.data?.first_name}  ${user?.data?.last_name}`}</Text>
-            <Text>{user?.data?.email}</Text>
+            <Text style={styles.title}>{`${user?.first_name}  ${user?.last_name}`}</Text>
+            <Text>{user?.email}</Text>
           </View>
         </View>
         <Drawer.Section title="Hồ Sơ" style={styles.drawerSection}>
-          {user?.data?.user_type==1 ? // user_type
+          {user?.user_type==1 ? // user_type
             <View>
-              <ProfileItem title="Khoa" value={user?.data?.student?.activity_class?.department?.name} />
-              <ProfileItem title="Lớp" value={user?.data?.student?.activity_class?.name} />
+              <ProfileItem title="Khoa" value={user?.student?.activity_class?.department?.name} />
+              <ProfileItem title="Lớp" value={user?.student?.activity_class?.name} />
               {/* <ProfileItem title="Chuyên ngành" value="IT" /> */}
             </View> :
             <View>
-              <ProfileItem title="Khoa" value={user?.data?.lecturer?.department?.name} />
-              <ProfileItem title="Trình độ" value={user?.data?.lecturer?.degree?.name} />
+              <ProfileItem title="Khoa" value={user?.lecturer?.department?.name} />
+              <ProfileItem title="Trình độ" value={user?.lecturer?.degree?.name} />
             </View>
           }
-          <ProfileItem title="Điện thoại" value={user?.data?.phone} />
+          <ProfileItem title="Điện thoại" value={user?.phone} />
         </Drawer.Section>
         {pressed ? <ProfileSettingScreen departments={department} /> : null}
       </ScrollView>

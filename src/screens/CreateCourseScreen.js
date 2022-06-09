@@ -8,9 +8,13 @@ import {
 import TextInputComponent from '../components/TextInputComponent';
 import DropdownComponent from '../components/DropdownComponent';
 import HeaderCreatingScreenCmp from '../components/HeaderCreatingScreenCmp';
-import { getAllCategories, createCourse } from '../api/CourseAPI'
+import { getAllCategories, createCourse} from '../api/CourseAPI'
+// import { createCourse } from '../redux/actions/courseActions'
+import { useDispatch, useSelector } from 'react-redux';
 
 export default function CreateCourseScreen({ navigation, route }) {
+    const dispatch = useDispatch();
+    const token = useSelector(state => state.auth.bearerToken);
     const [selectCategory, setSelectedCategory] = useState("")
     const [text, setText] = useState("")
     const [categories, setCategories] = useState([])
@@ -20,10 +24,11 @@ export default function CreateCourseScreen({ navigation, route }) {
         setSelectedCategory(value)
     }
     const createCourseHandler = () => {
-        if(text.length <=0){
+        if (text.length <= 0) {
             console.error("Vui lòng nhập tên khóa học")
-        }else{
+        } else {
             ToastAndroid.showWithGravity("Đang tạo lớp học!", ToastAndroid.SHORT, ToastAndroid.CENTER);
+            // dispatch(createCourse(token, selectCategory, text))
             createCourse(selectCategory, text)
         }
     }

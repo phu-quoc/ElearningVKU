@@ -4,7 +4,8 @@ import {
   View,
   ScrollView,
   StyleSheet,
-  TouchableOpacity
+  TouchableOpacity,
+  ToastAndroid
 } from 'react-native';
 import TextInputComponent from '../components/TextInputComponent';
 import DropdownComponent from '../components/DropdownComponent';
@@ -45,6 +46,7 @@ export default function CreateDocumentScreen({ navigation, route }) {
     setMultipleFile(array)
   }
   const onSent = () => {
+    ToastAndroid.showWithGravity("Đang tạo tài liệu!", ToastAndroid.SHORT, ToastAndroid.CENTER);
     createDocument(selectedTopic, title, description, url, multipleFile)
   }
 

@@ -1,5 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {AUTO_LOGIN, GET_USER, LOGIN, LOGOUT} from '../actions/authActions';
+import { AUTO_LOGIN, GET_USER, LOGIN, LOGOUT, UPDATE_PROFILE } from '../actions/authActions';
 
 const initialState = {
   user: '',
@@ -34,6 +34,11 @@ const authReducer = (state = initialState, action) => {
         bearerToken: '',
         isAuth: false,
       };
+    case UPDATE_PROFILE:
+      return {
+        ...state,
+        user: action.payload,
+      }
     default:
       return state;
   }

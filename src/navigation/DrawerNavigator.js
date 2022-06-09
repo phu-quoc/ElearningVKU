@@ -39,7 +39,7 @@ function DrawerNavigator() {
         <Drawer.Navigator
             drawerContent={props => <DrawerContent {...props} />}
             initialRouteName={BOTTOM_TABS_NAVIGATOR_NAME}
-            screenOptions={{ drawerPosition: 'right' }}
+            screenOptions={{ drawerPosition: 'right', headerShown: false }}
         >
             <Drawer.Screen name={BOTTOM_TABS_NAVIGATOR_NAME} component={BottomTabsNavigator} options={{ headerShown: false }} />
             <Drawer.Screen name={COURSE_DETAILS_SCREEN_NAME} component={CourseDetailsScreen} options={{ headerLeft: false }} />

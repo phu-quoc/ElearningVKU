@@ -1,28 +1,38 @@
-import React, { useEffect } from 'react';
-import { FlatList, StyleSheet, View } from 'react-native';
-import { useDispatch, useSelector } from 'react-redux';
+import React, {useState, useEffect} from 'react';
+import {FlatList, StyleSheet, View, Text} from 'react-native';
+import {useDispatch, useSelector} from 'react-redux';
 import FloatingBottomButton from '../components/FloatingBottomButton';
-import { CourseCard } from '../components';
+import {CourseCard} from '../components';
 import {
   COURSE_DETAILS_SCREEN_NAME,
   CREATE_COURSE_SCREEN_NAME,
 } from '../constants/routeNames';
-import { getUser } from '../redux/actions/authActions';
-import { getCourseOfUser } from '../redux/actions/courseActions';
+import {getUser} from '../redux/actions/authActions';
+import {getCourseOfUser} from '../redux/actions/courseActions';
+import {useIsFocused} from '@react-navigation/native';
+import axios from 'axios';
+import {TouchableOpacity} from 'react-native-gesture-handler';
+import { sendNotification } from '../api/NotificationAPI';
 
-const HomeScreen = ({ navigation }) => {
+const HomeScreen = ({navigation}) => {
+  const isFocused = useIsFocused();
   const dispatch = useDispatch();
   const token = useSelector(state => state.auth.bearerToken);
   const courses = useSelector(state => state.courses.courses);
   const user = useSelector(state => state.auth.user);
+  // const [refreshing, setFreshing] = useState(false);
 
   useEffect(() => {
-    dispatch(getUser(token));
-    dispatch(getCourseOfUser(token))
-    console.log("token:", token);
-    console.log("user:", user);
-    console.log("courses:", courses);
-  }, []);
+    if (isFocused) {
+      dispatch(getUser(token));
+      dispatch(getCourseOfUser(token));
+      console.log('token:', token);
+    }
+  }, [isFocused]);
+
+  const sendMessage = () => {
+    sendNotification(token);
+  };
 
   const pressButtonHandler = () => {
     navigation.navigate(CREATE_COURSE_SCREEN_NAME);
@@ -30,23 +40,28 @@ const HomeScreen = ({ navigation }) => {
 
   function renderCourses() {
     return (
-      
+      <>
+        <TouchableOpacity
+          onPress={sendMessage}
+          style={{width: 200, height: 100, backgroundColor: '#fff'}}>
+          <Text>Send message</Text>
+        </TouchableOpacity>
         <FlatList
-        data={courses}
-        showsVerticalScrollIndicator={false}
-        renderItem={({ item, index }) => (
-          <CourseCard
-            course={item}
-            onPress={() =>
-              navigation.navigate(COURSE_DETAILS_SCREEN_NAME, {
-                courseId: courses[index].id,
-              })
-            }
-          />
-        )}
-      />
-     
-      
+          data={courses}
+          showsVerticalScrollIndicator={false}
+          renderItem={({item, index}) => (
+            <CourseCard
+              id={index}
+              course={item}
+              onPress={() =>
+                navigation.navigate(COURSE_DETAILS_SCREEN_NAME, {
+                  courseId: courses[index].id,
+                })
+              }
+            />
+          )}
+        />
+      </>
     );
   }
   return (

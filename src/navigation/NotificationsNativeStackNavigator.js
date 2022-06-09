@@ -11,20 +11,25 @@ const NotificationsStack = createNativeStackNavigator();
 
 const NotificationNativeStackNavigator = () => {
   return (
-    <NotificationsStack.Navigator
-      >
-      <NotificationsStack.Screen
-        name={DRAWER_NAVIGATOR_NAME}
-        component={DrawerNavigator}
-        options={{headerShown: false}}
-      />
-      <NotificationsStack.Screen
-        name={NOTIFICATIONS_SCREEN_NAME}
-        component={NotificationsScreen}
-        options={{headerRight: null}}
-      />
-    </NotificationsStack.Navigator>
+    <>
+      
+      <NotificationsStack.Navigator
+        screenOptions={{
+          headerShown: false,
+        }}>
+        <NotificationsStack.Screen
+          name={DRAWER_NAVIGATOR_NAME}
+          component={DrawerNavigator}
+          options={{headerShown: false}}
+        />
+        <NotificationsStack.Screen
+          name={NOTIFICATIONS_SCREEN_NAME}
+          component={NotificationsScreen}
+          options={{headerRight: null}}
+        />
+      </NotificationsStack.Navigator>
+    </>
   );
-}
+};
 
 export default NotificationNativeStackNavigator;

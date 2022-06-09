@@ -7,31 +7,23 @@ import {
   ToastAndroid,
 } from 'react-native';
 import React, { useState, useEffect } from 'react'
-import ProfileSettingItem from '../components/ProfileSettingItem';
-import { updateProfile } from '../api/ProfileAPI'
+import { useDispatch, useSelector } from 'react-redux';
+import { updateProfile } from '../redux/actions/authActions'
 
 function ProfileSettingScreen(props) {
-  const [department, setDepartment] = useState("");
-  // const departments = ['Computer Science', 'Business Administration', "Computer Engineering"]
-  // const majors = ["GIT", 'IT', ' DM', "CE"]
-  // const classes = ['20GIT', '20SE1', '20SE2', '20SE3']
-  // const userTypes = ['Student', "Lecture"];
+  const dispatch = useDispatch();
+  const token = useSelector(state => state.auth.bearerToken);
   const [phone, setPhone] = useState("")
   const [isClicked, setIsClicked] = useState(false)
   const updateHandler = () => {
     setIsClicked(true)
     ToastAndroid.showWithGravity("Đang cập nhật!", ToastAndroid.SHORT, ToastAndroid.CENTER);
-    updateProfile(phone)
+    dispatch(updateProfile(token,phone))
     setIsClicked(false)
   }
 
   return (
     <View style={{ paddingTop: 30, }}>
-      {/* <ProfileSettingItem title="Quyền" data={userTypes} /> */}
-      {/* <ProfileSettingItem title="Khoa"
-        data={Array.from(props.departments).map(depart => ([{ name: depart.name, index: depart.id }]))} /> */}
-      {/* <ProfileSettingItem title="Major" data={majors} /> */}
-      {/* <ProfileSettingItem title="Lớp" data={classes} /> */}
       <View style={styles.profileItem}>
         <Text style={{ ...styles.text, fontWeight: "bold", }}>Điện thoại:</Text>
         <TextInput style={styles.input}

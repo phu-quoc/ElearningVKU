@@ -5,7 +5,7 @@ import LoginScreen from '../screens/LoginScreen';
 import {useDispatch, useSelector} from 'react-redux';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {autoLogin} from '../redux/actions/authActions';
-import {getToken} from '../api/Common';
+import PushNotification from 'react-native-push-notification';
 
 function AppNavigation() {
   const isAuth = useSelector(state => state.auth.isAuth);
@@ -13,12 +13,13 @@ function AppNavigation() {
   useEffect(() => {
     async function getToken() {
       const token = await AsyncStorage.getItem('@Token');
-      if (token) {
+      if (token !== null) {
         dispatch(autoLogin(token));
       }
-    } 
+    }
     getToken();
   }, []);
+
   return (
     <NavigationContainer>
       {!isAuth && <LoginScreen />}
