@@ -12,7 +12,7 @@ import {getCourseOfUser} from '../redux/actions/courseActions';
 import {useIsFocused} from '@react-navigation/native';
 import axios from 'axios';
 import {TouchableOpacity} from 'react-native-gesture-handler';
-import { sendNotification } from '../api/NotificationAPI';
+import {sendNotification} from '../api/NotificationAPI';
 
 const HomeScreen = ({navigation}) => {
   const isFocused = useIsFocused();
@@ -40,28 +40,21 @@ const HomeScreen = ({navigation}) => {
 
   function renderCourses() {
     return (
-      <>
-        <TouchableOpacity
-          onPress={sendMessage}
-          style={{width: 200, height: 100, backgroundColor: '#fff'}}>
-          <Text>Send message</Text>
-        </TouchableOpacity>
-        <FlatList
-          data={courses}
-          showsVerticalScrollIndicator={false}
-          renderItem={({item, index}) => (
-            <CourseCard
-              id={index}
-              course={item}
-              onPress={() =>
-                navigation.navigate(COURSE_DETAILS_SCREEN_NAME, {
-                  courseId: courses[index].id,
-                })
-              }
-            />
-          )}
-        />
-      </>
+      <FlatList
+        data={courses}
+        showsVerticalScrollIndicator={false}
+        renderItem={({item, index}) => (
+          <CourseCard
+            id={index}
+            course={item}
+            onPress={() =>
+              navigation.navigate(COURSE_DETAILS_SCREEN_NAME, {
+                courseId: courses[index].id,
+              })
+            }
+          />
+        )}
+      />
     );
   }
   return (

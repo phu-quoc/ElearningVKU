@@ -2,6 +2,7 @@ import axios from 'axios';
 import {getToken} from './Common';
 import {ToastAndroid} from 'react-native';
 import {BASE_URL} from './axiosInstance';
+import { sendNotification } from './NotificationAPI';
 
 export const createDocument = async (
   topicID,
@@ -9,6 +10,7 @@ export const createDocument = async (
   description,
   url,
   files,
+  courseName
 ) => {
   const token = await getToken();
   const data = new FormData();
@@ -44,6 +46,7 @@ export const createDocument = async (
         ToastAndroid.SHORT,
         ToastAndroid.CENTER,
       );
+      sendNotification(token, 1, title, courseName);
     })
     .catch(error => {
       console.log(error.message);
@@ -54,3 +57,24 @@ export const createDocument = async (
       );
     });
 };
+
+export const createLink = async (topicID, title, url, courseName) => {
+  const token = await getToken();
+  axios.post(`${BASE_URL}/url`, {
+    topicID: topicID,
+    title: title,
+    url: url,
+  }, {
+    "headers": {
+      'Accept': 'application/json',
+      'Content-Type': `multipart/form-data`,
+      'Authorization': `Bearer ${token}`,
+    }
+  }
+  ).then(response => {
+    ToastAndroid.showWithGravity("Lưu thành công!", ToastAndroid.SHORT, ToastAndroid.CENTER);
+    sendNotification(token, 2, title, courseName);
+  }).catch(error => {
+    console.log("error: ", error.message)
+  })
+}

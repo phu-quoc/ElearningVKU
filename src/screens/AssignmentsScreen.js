@@ -1,25 +1,42 @@
-import React from 'react';
-import {Text, View, StyleSheet} from 'react-native';
-import {TouchableOpacity} from 'react-native-gesture-handler';
-import PushNotification from 'react-native-push-notification';
+import React, { useEffect } from 'react';
+import { Text, View, StyleSheet } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
+import { getUnSubmitAssignments } from '../redux/actions/unSubmitAssignmentActions'
+import { DrawerRouter, useIsFocused } from "@react-navigation/native";
+import {
+  DrawerContentScrollView,
+  DrawerItem
+} from '@react-navigation/drawer';
+import { Drawer } from 'react-native-paper';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import FontAweSome5 from 'react-native-vector-icons/FontAwesome5'
+import { ASSIGNMENT_DETAIL_SCREEN_NAME } from '../constants/routeNames';
 
-function AssignmentScreen() {
-  const notificationHandler = item => {
-    PushNotification.localNotificationSchedule({
-      channelId: 'test',
-      title: 'Successfully',
-      message: '+1.000.000 VND into account payment',
-      date: new Date(Date.now() + 1000),
-      allowWhileIdle: true,
-    });
-  };
+function AssignmentScreen({navigation}) {
+  const isFocused = useIsFocused();
+  const dispatch = useDispatch();
+  const token = useSelector(state => state.auth.bearerToken);
+  const unSubmitAssignments = useSelector(state => state.unSubmitAssignments.unSubmitAssignments)
+  console.log("unSubmitAssignments", unSubmitAssignments)
+
+  useEffect(() => {
+    dispatch(getUnSubmitAssignments(token))
+  }, [isFocused])
   return (
-    <View style={styles.container}>
-      <TouchableOpacity
-        onPress={notificationHandler}
-        style={{width: 300, height: 100, backgroundColor: '#fff'}}>
-        <Text>AssignmentScreen</Text>
-      </TouchableOpacity>
+    <View>
+      <Drawer.Section>
+        {unSubmitAssignments.map(item => (
+          < DrawerItem
+            onPress={() => {
+              navigation.navigate(ASSIGNMENT_DETAIL_SCREEN_NAME, { id: item.id })
+            }}
+            label={item.title}
+            icon={() => (
+              <FontAweSome5 name="book" size={20} />
+            )}
+          />))
+        }
+      </Drawer.Section>
     </View>
   );
 }

@@ -30,6 +30,16 @@ export const TopicCard = ({id, topic, navigation}) => {
                           />
                         ))
                       : null;
+                  case 2:
+                    // return null;
+                    return (
+                      <DrawerItem
+                      key={id}
+                        onPress={() => Linking.openURL(`${resource?.url?.url}`)}
+                        label={resource.title}
+                        icon={() => <FontAweSome5 name="chrome" size={20} />}
+                      />
+                    );
                   case 4: //is Assignments
                     return (
                       <DrawerItem
@@ -49,7 +59,7 @@ export const TopicCard = ({id, topic, navigation}) => {
                 //  ()
               })
             : null}
-          {topic?.resources
+          {/* {topic?.resources
             ? topic.resources.map(resource => {
                 return resource?.url ? (
                   <DrawerItem
@@ -60,7 +70,7 @@ export const TopicCard = ({id, topic, navigation}) => {
                   />
                 ) : null;
               })
-            : null}
+            : null} */}
         </Drawer.Section>
       </View>
     </View>

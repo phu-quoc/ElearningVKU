@@ -15,6 +15,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { getTopicByCourse } from '../api/TopicAPI'
 import { useIsFocused } from "@react-navigation/native";
 import { createDocument } from '../api/ResourceAPI'
+import { useSelector } from 'react-redux';
 
 export default function CreateDocumentScreen({ navigation, route }) {
   const isFocused = useIsFocused();
@@ -24,6 +25,8 @@ export default function CreateDocumentScreen({ navigation, route }) {
   const [topics, setTopics] = useState([])
   const [selectedTopic, setSelectedTopic] = useState()
   const [multipleFile, setMultipleFile] = useState([]);
+  const courseId = route.params.courseId;
+  const course = useSelector(state => state.courses.courses.find(course => course.id === courseId));
 
   const selectTopicHandler = (value) => {
     setSelectedTopic(value)
@@ -47,7 +50,7 @@ export default function CreateDocumentScreen({ navigation, route }) {
   }
   const onSent = () => {
     ToastAndroid.showWithGravity("Đang tạo tài liệu!", ToastAndroid.SHORT, ToastAndroid.CENTER);
-    createDocument(selectedTopic, title, description, url, multipleFile)
+    createDocument(selectedTopic, title, description, url, multipleFile, course.name)
   }
 
   useEffect(() => {
@@ -69,7 +72,7 @@ export default function CreateDocumentScreen({ navigation, route }) {
         onSelect={selectTopicHandler}
       />
       <TextInputComponent value={title} onChangeText={setTitle} placeholder="Tiêu đề" />
-      <TextInputComponent value={url} onChangeText={setUrl} placeholder="Link tham khảo" />
+      {/* <TextInputComponent value={url} onChangeText={setUrl} placeholder="Link tham khảo" /> */}
       <TextInputComponent onChangeText={setDescription}
         placeholder="Mô tả tài liệu" value={description}
         multiline={true} numberOfLines={5}
