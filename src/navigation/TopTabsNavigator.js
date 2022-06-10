@@ -18,10 +18,11 @@ function TopTabNavigation() {
     <>
       <HomeHeader />
       <Tab.Navigator>
-        <Tab.Screen name={HOME_SCREEN_NAME} component={HomeScreen} />
+        <Tab.Screen name={HOME_SCREEN_NAME} component={HomeScreen} options={{title: 'Khóa học'}} />
         <Tab.Screen
           name={ASSIGNMENTS_SCREEN_NAME}
           component={AssignmentsScreen}
+          options={{title: 'Bài tập'}}
         />
       </Tab.Navigator>
     </>

@@ -38,6 +38,9 @@ function CourseDetailsScreen({ navigation, route }) {
   const topics = useSelector(state => state.topics.topics);
   const user = useSelector(state => state.auth.user);
   const token = useSelector(state => state.auth.bearerToken);
+  const course = useSelector(state => state.courses.courses.find(course => course.id === courseId));
+
+  navigation.setOptions({title: course.name})
 
   useEffect(() => {
     if(isFocused){

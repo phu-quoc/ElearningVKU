@@ -49,9 +49,9 @@ function BottomTabsNavigator({navigation}) {
       <Tab.Screen
         name={NATIVE_STACK_NAVIGATOR_NAME}
         component={NativeStackNavigator}
-        options={{headerShown: false}}
+        options={{headerShown: false, title: 'Khóa học'}}
       />
-      <Tab.Screen name={SETTINGS_SCREEN_NAME} component={SettingsScreen} />
+      <Tab.Screen name={SETTINGS_SCREEN_NAME} component={SettingsScreen} options={{title: 'Cài đặt'}}/>
     </Tab.Navigator>
   );
 }

@@ -95,7 +95,7 @@ export default function DrawerContent(props) {
                   size={size}
                 />
               )}
-              label="Home"
+              label="Khóa học"
               onPress={() => { props.navigation.navigate(HOME_SCREEN_NAME) }}
             />
             <DrawerItem
@@ -106,7 +106,7 @@ export default function DrawerContent(props) {
                   size={size}
                 />
               )}
-              label="Notification"
+              label="Thông báo"
               onPress={() => { props.navigation.navigate(NOTIFICATIONS_SCREEN_NAME) }}
             />
             <DrawerItem
@@ -117,7 +117,7 @@ export default function DrawerContent(props) {
                   size={size}
                 />
               )}
-              label="Profile"
+              label="Thông tin cá nhân"
               onPress={() => {
                 props.navigation.navigate(PROFILE_SCREEN_NAME)
               }}
@@ -141,7 +141,7 @@ export default function DrawerContent(props) {
                   size={size}
                 />
               )}
-              label="Setting"
+              label="Cài đặt"
               onPress={() => { props.navigation.navigate(SETTINGS_SCREEN_NAME) }}
             />
             <DrawerItem
@@ -152,11 +152,11 @@ export default function DrawerContent(props) {
                   size={size}
                 />
               )}
-              label="Support"
+              label="Hỗ trợ"
               onPress={() => { props.navigation.navigate('SupportScreen') }}
             />
           </Drawer.Section>
-          <Drawer.Section title="Courses">
+          <Drawer.Section title="Các khóa học">
             {courses.map((item) => (
               <DrawerItem
                 key={item.id}
@@ -188,7 +188,7 @@ export default function DrawerContent(props) {
               size={size}
             />
           )}
-          label="Sign Out"
+          label="Đăng xuất"
           onPress={logoutHandler}
         />
       </Drawer.Section>
