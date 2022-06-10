@@ -2,6 +2,7 @@ import axios from 'axios';
 import {getToken} from './Common';
 import {ToastAndroid} from 'react-native';
 import {BASE_URL} from './axiosInstance';
+import {sendNotification} from './NotificationAPI';
 
 export const createAssignment = async (
   topicID,
@@ -9,7 +10,7 @@ export const createAssignment = async (
   description,
   deadline,
   files,
-  courseName
+  courseName,
 ) => {
   const token = await getToken();
   const data = new FormData();
@@ -70,8 +71,8 @@ export const getAssignment = (id, setAssignment) => {
 };
 
 export const turnIn = async (assignmentID, files) => {
-  console.log(assignmentID)
-  console.log(files)
+  console.log(assignmentID);
+  console.log(files);
   const token = await getToken();
   const data = new FormData();
   data.append('assignmentID', assignmentID);
@@ -111,15 +112,21 @@ export const turnIn = async (assignmentID, files) => {
 export const getSubmission = async (assignment_id, setSubmisson) => {
   // get assignment submission
   const token = await getToken();
-  axios.get(`${BASE_URL}/assignment-submission/null?assignment_id=${assignment_id}`, {
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${token}`,
-    },
-  }).then(response => {
-    setSubmisson(response.data)
-  }).catch(error => {
-    console.error("error: ", error.message)
-  })
-}
+  axios
+    .get(
+      `${BASE_URL}/assignment-submission/null?assignment_id=${assignment_id}`,
+      {
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+      },
+    )
+    .then(response => {
+      setSubmisson(response.data);
+    })
+    .catch(error => {
+      console.error('error: ', error.message);
+    });
+};
