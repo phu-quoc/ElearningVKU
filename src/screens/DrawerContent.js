@@ -159,6 +159,7 @@ export default function DrawerContent(props) {
           <Drawer.Section title="Courses">
             {courses.map((item) => (
               <DrawerItem
+                key={item.id}
                 icon={({ color, size }) => (
                   <Icon
                     name="notebook-outline"
