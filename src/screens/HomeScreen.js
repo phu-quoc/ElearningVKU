@@ -43,6 +43,7 @@ const HomeScreen = ({navigation}) => {
       <FlatList
         data={courses}
         showsVerticalScrollIndicator={false}
+        keyExtractor={(item) => item.id}
         renderItem={({item, index}) => (
           <CourseCard
             id={index}
