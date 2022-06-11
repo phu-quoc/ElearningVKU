@@ -12,7 +12,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import FontAweSome5 from 'react-native-vector-icons/FontAwesome5'
 import { ASSIGNMENT_DETAIL_SCREEN_NAME } from '../constants/routeNames';
 
-function AssignmentScreen({navigation}) {
+function AssignmentScreen({ navigation }) {
   const isFocused = useIsFocused();
   const dispatch = useDispatch();
   const token = useSelector(state => state.auth.bearerToken);
@@ -27,6 +27,7 @@ function AssignmentScreen({navigation}) {
       <Drawer.Section>
         {unSubmitAssignments.map(item => (
           < DrawerItem
+            key={item.id}
             onPress={() => {
               navigation.navigate(ASSIGNMENT_DETAIL_SCREEN_NAME, { id: item.id })
             }}

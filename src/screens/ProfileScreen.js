@@ -26,7 +26,7 @@ function ProfileScreen({ navigation, route }) {
   // const [user, setUser] = useState(route.params?.user);
   const btEditToggle = async () => {
     setPressed(!pressed);
-    console.log("department: ", department);
+    // console.log("department: ", department);
   }
   const [refreshing, setFreshing] = useState(false);
   const onRefresh = () => {
@@ -34,10 +34,10 @@ function ProfileScreen({ navigation, route }) {
     setFreshing(false);
     console.log(user)
   }
-  useEffect(()=>{ 
-    console.log('user', user)
-    getAllDepartments(setDepartment)
-  }, [])
+  // useEffect(()=>{ 
+  //   console.log('user', user)
+  //   getAllDepartments(setDepartment)
+  // }, [])
 
   return (
     <View style={{ flex: 1, backgroundColor: '#fff', }}>
@@ -80,7 +80,7 @@ function ProfileScreen({ navigation, route }) {
           }
           <ProfileItem title="Điện thoại" value={user?.phone} />
         </Drawer.Section>
-        {pressed ? <ProfileSettingScreen departments={department} /> : null}
+        {pressed ? <ProfileSettingScreen /> : null}
       </ScrollView>
     </View>
   )
