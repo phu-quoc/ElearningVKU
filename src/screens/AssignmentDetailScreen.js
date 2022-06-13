@@ -64,7 +64,7 @@ export default function AssignmentDetailScreen({ navigation, route }) {
         <Text style={styles.description}>{assignment?.description}</Text>
         <Text style={styles.title}>Tệp đính kèm:</Text>
         {assignment?.assignment?.assignment_file_attacks.map(item => (
-          <Pressable onPress={() => Linking.openURL(`${item.file_attack_path}`)}>
+          <Pressable key={item.id}  onPress={() => Linking.openURL(`${item.file_attack_path}`)}>
             <Text>{item.name}</Text>
           </Pressable>
         ))}

@@ -19,7 +19,7 @@ PushNotification.configure({
 });
 
 messaging().setBackgroundMessageHandler(async remoteMessage => {
-  // console.log('Message handled in the background!', remoteMessage);
+  console.log('Message handled in the background!', remoteMessage);
   PushNotification.createChannel({
     channelId: 'notification',
     channelName: 'notification_name',
@@ -28,6 +28,10 @@ messaging().setBackgroundMessageHandler(async remoteMessage => {
     channelId: 'notification',
     title: remoteMessage.notification.title,
     message: remoteMessage.notification.body,
+    ticker: 'My Notification Ticker', // (optional)
+    largeIcon: 'ic_launcher_foreground',
+    smallIcon: 'ic_launcher_foreground',
+    bigLargeIcon: 'ic_launcher_foreground',
   });
 });
 

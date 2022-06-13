@@ -40,13 +40,18 @@ function CourseDetailsScreen({ navigation, route }) {
   const token = useSelector(state => state.auth.bearerToken);
   const course = useSelector(state => state.courses.courses.find(course => course.id === courseId));
 
-  
+  const setOptions = () => navigation.setOptions({title: course.name});
+
   useEffect(() => {
     navigation.setOptions({title: course.name})
     if(isFocused){
       dispatch(getTopicsByCourse(courseId, token));
     }
   }, [isFocused]);
+
+  useEffect(() => {
+    setOptions();
+  },[]);
 
   // const getTopicsByCourseHandler = () => {
   //   dispatch(getTopicsByCourse(courseId, token));

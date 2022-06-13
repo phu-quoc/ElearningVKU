@@ -2,12 +2,13 @@ import axios from "axios";
 import {
   ToastAndroid,
 } from 'react-native'
-import { BASE_URL, getToken } from "./Common";
+import { getToken } from "./Common";
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { BASE_URL } from "./axiosInstance";
 
 
 export const getAllDepartments = (setDepartment) => {
-  axios.get(`${BASE_URL}department`, {
+  axios.get(`${BASE_URL}/department`, {
     headers: { 'Content-Type': 'application/json' }
   }).then(response => {
     setDepartment(response.data);
@@ -20,7 +21,7 @@ export const updateProfile = async (phone) => {
   const token = await getToken();
   console.log('token', token);
 
-  axios.put(`${BASE_URL}user/null`, {
+  axios.put(`${BASE_URL}/user/null`, {
     data: {
       phone: phone
     }

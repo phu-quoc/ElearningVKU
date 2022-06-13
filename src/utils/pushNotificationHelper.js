@@ -3,8 +3,6 @@ import messaging from '@react-native-firebase/messaging';
 import {useDispatch} from 'react-redux';
 import PushNotification from 'react-native-push-notification';
 
-
-
 export const notificationListener = () => {
   messaging().onNotificationOpenedApp(remoteMessage => {
     console.log(
@@ -35,6 +33,11 @@ export const notificationListener = () => {
       channelId: 'notification',
       title: remoteMessage.notification.title,
       message: remoteMessage.notification.body,
+      ticker: 'My Notification Ticker', // (optional)
+      largeIcon: 'ic_launcher_foreground',
+      smallIcon: 'ic_launcher_foreground',
+      bigLargeIcon: 'ic_launcher_foreground',
+      vibrate: true
     });
   });
 };
