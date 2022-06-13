@@ -1,6 +1,7 @@
 export const HOME_SCREEN_NAME = 'Home';
 export const ASSIGNMENTS_SCREEN_NAME = 'Assignments';
 export const SETTINGS_SCREEN_NAME = 'Settings';
+export const SUPPORT_SCREEN_NAME = 'Supports';
 export const COURSE_DETAILS_SCREEN_NAME = 'CourseDetails';
 export const NOTIFICATIONS_SCREEN_NAME = 'Notifications';
 export const NATIVE_STACK_NAVIGATOR_NAME = 'NativeStackNavigator';
@@ -9,9 +10,9 @@ export const BOTTOM_TABS_NAVIGATOR_NAME = 'BottomTabsNavigator';
 export const DRAWER_NAVIGATOR_NAME = 'DrawerNavigator';
 export const NOTIFICATIONS_NATIVE_STACK_NAME =
   'NotificationsNativeStackNavigator';
-export const PROFILE_SCREEN_NAME = 'Profile'
-export const CREATE_COURSE_SCREEN_NAME= 'CreateCourseScreen'
-export const CREATE_ASSIGNMENT_SCREEN_NAME= 'CreateAssignmentScreen'
-export const CREATE_DOCUMENT_SCREEN_NAME= 'CreateDocumentScreen'
-export const ASSIGNMENT_DETAIL_SCREEN_NAME= 'AssignmentDetailScreen'
-export const CREATE_LINK_SCREEN_NAME= 'CreateLinkScreen'
+export const PROFILE_SCREEN_NAME = 'Profile';
+export const CREATE_COURSE_SCREEN_NAME = 'CreateCourseScreen';
+export const CREATE_ASSIGNMENT_SCREEN_NAME = 'CreateAssignmentScreen';
+export const CREATE_DOCUMENT_SCREEN_NAME = 'CreateDocumentScreen';
+export const ASSIGNMENT_DETAIL_SCREEN_NAME = 'AssignmentDetailScreen';
+export const CREATE_LINK_SCREEN_NAME = 'CreateLinkScreen';

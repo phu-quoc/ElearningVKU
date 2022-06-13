@@ -65,7 +65,7 @@ export default function CreateAssignmentScreen({navigation, route}) {
       ToastAndroid.SHORT,
       ToastAndroid.CENTER,
     );
-    createAssignment(selectedTopic, title, description, datetime, multipleFile, course.name);
+    createAssignment(selectedTopic, title, description, datetime, multipleFile, course.name, courseId);
   };
 
   const onChange = (event, selectedDate) => {

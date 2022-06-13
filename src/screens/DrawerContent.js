@@ -131,7 +131,7 @@ export default function DrawerContent(props) {
                 />
               )}
               label="Bookmarks"
-              onPress={() => { props.navigation.navigate('BookmarkScreen') }}
+              // onPress={() => { props.navigation.navigate('BookmarkScreen') }}
             />
             <DrawerItem
               icon={({ color, size }) => (
@@ -153,7 +153,7 @@ export default function DrawerContent(props) {
                 />
               )}
               label="Hỗ trợ"
-              onPress={() => { props.navigation.navigate('SupportScreen') }}
+              // onPress={() => { props.navigation.navigate('SupportScreen') }}
             />
           </Drawer.Section>
           <Drawer.Section title="Các khóa học">

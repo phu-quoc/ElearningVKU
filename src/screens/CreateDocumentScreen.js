@@ -50,7 +50,7 @@ export default function CreateDocumentScreen({ navigation, route }) {
   }
   const onSent = () => {
     ToastAndroid.showWithGravity("Đang tạo tài liệu!", ToastAndroid.SHORT, ToastAndroid.CENTER);
-    createDocument(selectedTopic, title, description, url, multipleFile, course.name)
+    createDocument(selectedTopic, title, description, url, multipleFile, course.name, courseId)
   }
 
   useEffect(() => {

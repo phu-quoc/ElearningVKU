@@ -11,6 +11,7 @@ export const createAssignment = async (
   deadline,
   files,
   courseName,
+  courseId
 ) => {
   const token = await getToken();
   const data = new FormData();
@@ -46,7 +47,7 @@ export const createAssignment = async (
         ToastAndroid.SHORT,
         ToastAndroid.CENTER,
       );
-      sendNotification(token, 4, title, courseName);
+      sendNotification(token, 4, title, courseName, courseId);
     })
     .catch(error => {
       console.log('error: ', error.message);
