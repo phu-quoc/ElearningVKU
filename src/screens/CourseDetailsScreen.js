@@ -40,9 +40,9 @@ function CourseDetailsScreen({ navigation, route }) {
   const token = useSelector(state => state.auth.bearerToken);
   const course = useSelector(state => state.courses.courses.find(course => course.id === courseId));
 
-  navigation.setOptions({title: course.name})
-
+  
   useEffect(() => {
+    navigation.setOptions({title: course.name})
     if(isFocused){
       dispatch(getTopicsByCourse(courseId, token));
     }
@@ -176,8 +176,8 @@ function CourseDetailsScreen({ navigation, route }) {
               }}
             />
             <DrawerItem
-              icon={() => (
-                <FontAweSome5 name="chrome" size={20} />
+              icon={({ color, size}) => (
+                <FontAweSome5 name="chrome" size={size} />
               )}
               label="Link"
               onPress={() => {
