@@ -7,7 +7,6 @@ import {white} from '../constants/colors';
 export const HomeHeader = () => {
   return (
     <View style={styles.container}>
-      {/* <Text>Dai hoc cong nghe thong tin va truyen thong Viet Han</Text> */}
       <Image
         source={require('../assets/images/logo_mobile_elearning.png')}
         style={styles.image}
@@ -22,6 +21,9 @@ const styles = StyleSheet.create({
     height: WINDOW_WIDTH / 7,
     padding: 3,
     backgroundColor: white,
+    shadowColor: '#000',
+    elevation: 3,
+    marginBottom: 1,
   },
   image: {
     flex: 1,

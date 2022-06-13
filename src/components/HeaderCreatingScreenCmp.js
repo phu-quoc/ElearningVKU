@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import {
   Text,
   View,
@@ -7,36 +7,35 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import { Drawer } from 'react-native-paper';
+import {Drawer} from 'react-native-paper';
 
 export default function HeaderCreatingScreenCmp(props) {
   const CloseHandler = () => {
-    props.navigation.goBack()
-  }
+    props.navigation.goBack();
+  };
 
   return (
     <View>
-      <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-        <TouchableOpacity   
-          onPress={CloseHandler}
-          style={styles.btnClose}
-        >
-          <Icon
-            name="close"
-            color={'#000000'}
-            size={30}
-          />
+      <View
+        style={{
+          flexDirection: 'row',
+          alignItems: 'center',
+          backgroundColor: '#fff',
+          shadowColor: '#000',
+          elevation: 5,
+        }}>
+        <TouchableOpacity onPress={CloseHandler} style={styles.btnClose}>
+          <Icon name="close" color={'#000000'} size={30} />
         </TouchableOpacity>
         <Drawer.Section>
           <Text style={styles.headerTitle}>{props.title}</Text>
         </Drawer.Section>
-
       </View>
       <TouchableOpacity style={styles.btnCreate} onPress={props.onPress}>
         <Text style={styles.text}>Tạo</Text>
       </TouchableOpacity>
     </View>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
@@ -63,7 +62,7 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 20,
-    color: "white",
-    textAlign: "center",
+    color: 'white',
+    textAlign: 'center',
   },
-})
+});

@@ -18,5 +18,5 @@ export const sendNotification = async (token, resource_type, title, course_name)
     },
   );
 
-  console.log(response);
+  console.log("Notification response: ",response);
 };
