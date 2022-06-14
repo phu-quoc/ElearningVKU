@@ -10,7 +10,8 @@ export const createDocument = async (
   description,
   url,
   files,
-  courseName
+  courseName,
+  courseId
 ) => {
   const token = await getToken();
   const data = new FormData();
@@ -46,7 +47,7 @@ export const createDocument = async (
         ToastAndroid.SHORT,
         ToastAndroid.CENTER,
       );
-      sendNotification(token, 1, title, courseName);
+      sendNotification(token, 1, title, courseName, courseId);
     })
     .catch(error => {
       console.log(error.message);
@@ -58,7 +59,7 @@ export const createDocument = async (
     });
 };
 
-export const createLink = async (topicID, title, url, courseName) => {
+export const createLink = async (topicID, title, url, courseName, courseId) => {
   const token = await getToken();
   axios.post(`${BASE_URL}/url`, {
     topicID: topicID,
@@ -73,7 +74,7 @@ export const createLink = async (topicID, title, url, courseName) => {
   }
   ).then(response => {
     ToastAndroid.showWithGravity("Lưu thành công!", ToastAndroid.SHORT, ToastAndroid.CENTER);
-    sendNotification(token, 2, title, courseName);
+    sendNotification(token, 2, title, courseName, courseId);
   }).catch(error => {
     console.log("error: ", error.message)
   })

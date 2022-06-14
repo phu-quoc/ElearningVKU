@@ -1,54 +1,68 @@
-import React, { useState, useEffect } from 'react'
-import {
-  View,
-  StyleSheet,
-  ToastAndroid
-} from 'react-native';
+import React, {useState, useEffect} from 'react';
+import {View, StyleSheet, ToastAndroid} from 'react-native';
 import TextInputComponent from '../components/TextInputComponent';
 import DropdownComponent from '../components/DropdownComponent';
 import HeaderInsertFileComponent from '../components/HeaderInsertFileComponent';
-import { getTopicByCourse } from '../api/TopicAPI'
-import { useIsFocused } from "@react-navigation/native";
-import { createLink } from '../api/ResourceAPI'
-import { useSelector } from 'react-redux';
+import {getTopicByCourse} from '../api/TopicAPI';
+import {useIsFocused} from '@react-navigation/native';
+import {createLink} from '../api/ResourceAPI';
+import {useSelector} from 'react-redux';
 
-export default function CreateLinkScreen({ navigation, route }) {
+export default function CreateLinkScreen({navigation, route}) {
   const isFocused = useIsFocused();
-  const [title, setTitle] = useState()
-  const [url, setUrl] = useState()
-  const [topics, setTopics] = useState([])
+  const [title, setTitle] = useState();
+  const [url, setUrl] = useState();
+  const [topics, setTopics] = useState([]);
   const [selectedTopic, setSelectedTopic] = useState();
   const courseId = route.params.courseId;
-  const course = useSelector(state => state.courses.courses.find(course => course.id === courseId));
+  const course = useSelector(state =>
+    state.courses.courses.find(course => course.id === courseId),
+  );
   // console.log("Course: "+JSON.stringify(course));
 
-  const selectTopicHandler = (value) => {
-    setSelectedTopic(value)
-  }
+  const selectTopicHandler = value => {
+    setSelectedTopic(value);
+  };
   const onSent = () => {
-    ToastAndroid.showWithGravity("Đang lưu!", ToastAndroid.SHORT, ToastAndroid.CENTER);
-    createLink(selectedTopic, title, url, course.name)
-  }
+    ToastAndroid.showWithGravity(
+      'Đang lưu!',
+      ToastAndroid.SHORT,
+      ToastAndroid.CENTER,
+    );
+    createLink(selectedTopic, title, url, course.name, courseId);
+  };
 
   useEffect(() => {
     // Call only when screen open or when back on screen
     if (isFocused) {
-      setTopics([])
-      getTopicByCourse(route.params?.courseId, setTopics)
+      setTopics([]);
+      getTopicByCourse(route.params?.courseId, setTopics);
     }
-  }, [isFocused])
+  }, [isFocused]);
 
   return (
-    <View style={{ flex: 1 }}>
-      <HeaderInsertFileComponent title="Thêm Link" navigation={navigation}
+    <View style={{flex: 1}}>
+      <HeaderInsertFileComponent
+        title="Thêm Link"
+        navigation={navigation}
         onSent={onSent}
       />
-      <DropdownComponent data={() => topics.map(item => ({ value: item.id, text: item.name }))}
-        placeholder="Chủ đề" value={selectedTopic}
+      <DropdownComponent
+        data={() => topics.map(item => ({value: item.id, text: item.name}))}
+        placeholder="Chủ đề"
+        value={selectedTopic}
         onSelect={selectTopicHandler}
       />
-      <TextInputComponent value={title} onChangeText={setTitle} placeholder="Tiêu đề" />
-      <TextInputComponent value={url} onChangeText={setUrl} placeholder="Link tham khảo" />
+      <TextInputComponent
+        value={title}
+        onChangeText={setTitle}
+        placeholder="Tiêu đề"
+      />
+      <TextInputComponent
+        value={url}
+        onChangeText={setUrl}
+        placeholder="Link tham khảo"
+      />
     </View>
-  )
+  );
 }
