@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {WINDOW_WIDTH} from '../constants/headerDimensions';
-import {Image, StyleSheet} from 'react-native';
+import {Image, StyleSheet, TouchableOpacity} from 'react-native';
 
 //Screens
 import TopTabsNavigator from '../navigation/TopTabsNavigator';
@@ -14,6 +14,9 @@ import {
 } from '../constants/routeNames';
 import {NotificationButton} from '../components';
 import AssignmentDetailScreen from '../screens/AssignmentDetailScreen';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import FontAweSome5 from 'react-native-vector-icons/FontAwesome5'
+
 
 const Stack = createNativeStackNavigator();
 
@@ -38,6 +41,11 @@ function NativeStackNavigator({navigation}) {
       <Stack.Screen
         name={COURSE_DETAILS_SCREEN_NAME}
         component={CourseDetailsScreen}
+        options={{headerRight:()=>(
+          <TouchableOpacity onPress={()=>alert('ok')}>
+            <FontAweSome5 name="ellipsis-v" color={'#000000'} size={20}/>
+          </TouchableOpacity>
+        )}}
       />
       {/* <Stack.Screen
         name={ASSIGNMENT_DETAIL_SCREEN_NAME}

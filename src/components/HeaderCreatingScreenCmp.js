@@ -4,7 +4,7 @@ import {
   View,
   StyleSheet,
   TouchableHighlight,
-  TouchableOpacity,
+  TouchableOpacity,c
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {Drawer} from 'react-native-paper';
